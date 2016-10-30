@@ -1,21 +1,24 @@
 import React from 'react';
-import firebase from 'firebase';
-// import firebase, { reference, signIn, signOut} from '../firebase';
+const firebase = require('../firebase');
 import { pick, map, extend } from 'lodash';
+const auth = firebase.auth();
+
 
 class Application extends React.Component {
   constructor() {
     super();
     this.state = {
-      user: null
+      user: false
     }
   }
 
-  signIn () {
-    let google = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(google);
-  };
+  signIn() {
+    let google = new firebase.auth.GoogleAuthProvider()
+    auth.signInWithPopup(google)
+  }
 
+  // const userMessagesRef = //firebasedatabasesyntax(use current user state here)
+  // userMessages.push(input variable )
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged((user) => {
@@ -23,19 +26,19 @@ class Application extends React.Component {
     });
   }
 
-
-
   render() {
     return (
-      <div>hello
-          <div id="userName"> {user ?
-            <p>Logged in as {user.displayName.split(' ')[0]}
-            <button className="sign" onClick={()=> signOut()}>Sign Out</button></p>
-            : <button className="sign" onClick={() => signIn()}>Sign In</button>}
-          </div>
+      <div>
+         <button className="sign"
+          onClick={() => this.signIn()}>Sign In</button>
+
+          <h1>{this.state.user.email}</h1>
+          <input  placeholder="budget item"></input>
       </div>
     )
   }
 }
+
+
 
 module.exports = Application;
