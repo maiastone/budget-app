@@ -31,7 +31,7 @@ class Application extends React.Component {
   setBudget(e) {
     let userBudget = this.state.userBudget;
     const budgetRef = firebase.database().ref(`users/${this.state.user.uid}`);
-    budgetRef.push({budget:{userBudget}})
+    budgetRef.push({userBudget})
   }
 
   setUserBudget(e, key) {
@@ -59,11 +59,11 @@ class Application extends React.Component {
             onChange={(e)=>this.setUserBudget(e, 'amount')}>
           </input>
 
-        </form>
-
           <button className="submitBudget"
             onClick={(e)=> this.setBudget(e)}>
           </button>
+
+        </form>
       </div>
     )
   }
