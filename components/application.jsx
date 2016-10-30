@@ -27,13 +27,15 @@ class Application extends React.Component {
     firebase.auth().onAuthStateChanged((user) => {
       this.setState({user});
       usersRef.push({
-        user: pick(user, 'uid')
+        user: pick('uid')
       })
     });
   }
 
   setBudget(e) {
     this.setState({userBudget: e.target.value})
+    const budgetRef = firebase.database().ref('users/budget');
+    budgetRef.push({budget:this.state.userBudget})
 
   }
 
@@ -44,10 +46,14 @@ class Application extends React.Component {
           onClick={() => this.signIn()}>Sign In</button>
 
           <h1>{this.state.user.email}</h1>
-          <input  placeholder="budget item" value={this.state.userBudget}
-            onChange={(e)=>this.setBudget(e)}>
 
+          <input placeholder="budget item" value={this.state.userBudget}
+            onChange={(e)=>this.setState({userBudget: e.target.value})}>
           </input>
+
+          <button className="submitBudget"
+            onClick={(e)=> this.setBudget(e)}>
+          </button>
       </div>
     )
   }
