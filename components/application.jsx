@@ -9,7 +9,10 @@ class Application extends React.Component {
     super();
     this.state = {
       user: false,
-      userBudget: ''
+      userBudget: {
+        title: '',
+        amount: ''
+      }
     }
   }
 
@@ -22,16 +25,19 @@ class Application extends React.Component {
     const usersRef = firebase.database().ref('users');
     firebase.auth().onAuthStateChanged((user) => {
       this.setState({user});
-      // usersRef.push({
-      //   user: pick(user, 'uid')
-      // })
     });
   }
 
   setBudget(e) {
-    this.setState({userBudget: e.target.value})
+    let userBudget = this.state.userBudget;
     const budgetRef = firebase.database().ref(`users/${this.state.user.uid}`);
-    budgetRef.push({budget:this.state.userBudget})
+    budgetRef.push({budget:{userBudget}})
+  }
+
+  setUserBudget(e, key) {
+    let userBudget = this.state.userBudget;
+    userBudget[key] = e.target.value;
+    this.setState({userBudget: userBudget})
   }
 
   render() {
@@ -42,9 +48,18 @@ class Application extends React.Component {
 
           <h1>{this.state.user.email}</h1>
 
-          <input placeholder="budget item" value={this.state.userBudget}
-            onChange={(e)=>this.setState({userBudget: e.target.value})}>
+        <form>
+
+          <input placeholder="budget item" value={this.state.userBudget.title}
+            onChange={(e)=>this.setUserBudget(e, 'title')}>
           </input>
+
+          <input placeholder="budget amount"
+            value={this.state.userBudget.amount}
+            onChange={(e)=>this.setUserBudget(e, 'amount')}>
+          </input>
+
+        </form>
 
           <button className="submitBudget"
             onClick={(e)=> this.setBudget(e)}>
