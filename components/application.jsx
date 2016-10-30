@@ -13,30 +13,25 @@ class Application extends React.Component {
     }
   }
 
-
   signIn() {
   let google = new firebase.auth.GoogleAuthProvider()
     auth.signInWithPopup(google)
   }
 
-  // const userMessagesRef = //firebasedatabasesyntax(use current user state here)
-  // userMessages.push(input variable )
-
   componentDidMount() {
     const usersRef = firebase.database().ref('users');
     firebase.auth().onAuthStateChanged((user) => {
       this.setState({user});
-      usersRef.push({
-        user: pick('uid')
-      })
+      // usersRef.push({
+      //   user: pick(user, 'uid')
+      // })
     });
   }
 
   setBudget(e) {
     this.setState({userBudget: e.target.value})
-    const budgetRef = firebase.database().ref('users/budget');
+    const budgetRef = firebase.database().ref(`users/${this.state.user.uid}`);
     budgetRef.push({budget:this.state.userBudget})
-
   }
 
   render() {
