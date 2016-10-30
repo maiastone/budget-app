@@ -1,12 +1,15 @@
 import React from 'react';
 const firebase = require('../firebase');
 import { pick, map, extend } from 'lodash';
+import BudgetForm from './budgetForm';
 const auth = firebase.auth();
 
 
 class Application extends React.Component {
   constructor() {
     super();
+    this.setBudget = this.setBudget.bind(this);
+    this.setUserBudget = this.setUserBudget.bind(this);
     this.state = {
       user: false,
       userBudget: {
@@ -45,30 +48,12 @@ class Application extends React.Component {
       <div>
          <button className="sign"
           onClick={() => this.signIn()}>Sign In</button>
-
           <h1>{this.state.user.email}</h1>
-
-        <form>
-
-          <input placeholder="budget item" value={this.state.userBudget.title}
-            onChange={(e)=>this.setUserBudget(e, 'title')}>
-          </input>
-
-          <input placeholder="budget amount"
-            value={this.state.userBudget.amount}
-            onChange={(e)=>this.setUserBudget(e, 'amount')}>
-          </input>
-
-          <button className="submitBudget"
-            onClick={(e)=> this.setBudget(e)}>
-          </button>
-
-        </form>
+          <BudgetForm setBudget={this.setBudget} setUserBudget={this.setUserBudget}  />
       </div>
     )
   }
 }
-
 
 
 module.exports = Application;
