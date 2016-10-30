@@ -1,14 +1,14 @@
 import firebase from 'firebase';
 
 const config = {
-  apiKey: 'AIzaSyAHXAtiBE1W3yYsiSGyhnK7FBVyydAalP8',
-  authDomain: 'chat-app-d59cd.firebaseapp.com',
-  databaseURL: 'https://chat-app-d59cd.firebaseio.com',
-  storageBucket: '',
-  messagingSenderId: '1067075746848'
+  apiKey: "AIzaSyDFzjjVpRLMT0d9KkY9-I-n6RNEM7vyy8Q",
+  authDomain: "budget-app-620c0.firebaseapp.com",
+  databaseURL: "https://budget-app-620c0.firebaseio.com",
+  storageBucket: "budget-app-620c0.appspot.com",
+  messagingSenderId: "765862225207"
 };
-
 firebase.initializeApp(config);
+
 
 
 
