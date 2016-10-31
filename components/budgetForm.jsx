@@ -9,6 +9,10 @@ class BudgetForm extends React.Component {
       userBudget: {
         title: '',
         amount: ''
+      },
+      updatedUserBudget: {
+        title: '',
+        amount: ''
       }
     };
   }
@@ -26,6 +30,20 @@ class BudgetForm extends React.Component {
     this.setState({ userBudget: userBudget });
   }
 
+  updateFirebaseUserBudget(e) {
+    e.preventDefault();
+    let updatedUserBudget = this.state.updatedUserBudget;
+    const budgetRef = firebase.database().ref(`users/${this.props.uid}`);
+    budgetRef.update({updatedUserBudget});
+  }
+
+  setUpdatedUserBudget(e, key) {
+    let updatedUserBudget = this.state.updatedUserBudget;
+    updatedUserBudget[key] = e.target.value;
+    this.setState({ updatedUserBudget: updatedUserBudget });
+  }
+
+
   render() {
     return(
       <form>
@@ -38,6 +56,17 @@ class BudgetForm extends React.Component {
         <button className="submitBudget"
           onClick={(e) => this.pushBudget(e)}>Submit Budget
         </button>
+        <br />
+        <input placeholder="update budget item"
+          onChange={(e) => this.setUpdatedUserBudget(e, 'title')}>
+        </input>
+        <input placeholder="update budget amount"
+          onChange={(e) => this.setUpdatedUserBudget(e, 'amount')}>
+        </input>
+        <button className="update submitBudget"
+          onClick={(e) => this.updateFirebaseUserBudget(e)}>Update Budget
+        </button>
+
       </form>
     )
   }
