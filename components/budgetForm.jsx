@@ -43,32 +43,38 @@ class BudgetForm extends React.Component {
     this.setState({ updatedUserBudget: updatedUserBudget });
   }
 
+  // <input placeholder="update budget amount"
+  //   onChange={(e) => this.setUpdatedUserBudget(e, 'amount')}>
+  // </input>
+  // <button className="update submitBudget"
+  //   onClick={(e) => this.updateFirebaseUserBudget(e)}>Update Budget
+  // </button>
 
   render() {
     return(
-      <form>
-        <input placeholder="budget item"
-          onChange={(e) => this.setUserBudget(e, 'title')}>
-        </input>
-        <input placeholder="budget amount"
-          onChange={(e) => this.setUserBudget(e, 'amount')}>
-        </input>
-        <button className="submitBudget"
-          onClick={(e) => this.pushBudget(e)}>Submit Budget
-        </button>
-        <br />
-        <input placeholder="update budget item"
-          onChange={(e) => this.setUpdatedUserBudget(e, 'title')}>
-        </input>
-        <input placeholder="update budget amount"
-          onChange={(e) => this.setUpdatedUserBudget(e, 'amount')}>
-        </input>
-        <button className="update submitBudget"
-          onClick={(e) => this.updateFirebaseUserBudget(e)}>Update Budget
-        </button>
+      <div className="card">
+        <form className="budget-form">
+          
+          <input className="budget-input" placeholder="budget item"
+            onChange={(e) => this.setUserBudget(e, 'title')}>
+          </input>
 
-      </form>
-    )
+          <input className="budget-input" placeholder="budget amount"
+            onChange={(e) => this.setUserBudget(e, 'amount')}>
+          </input>
+
+          <div className="radio-buttons">
+            Fixed<input className="radio" type="radio" value="fixed"></input>
+          Variable<input className="radio" type="radio" value="variable"></input>
+          </div>
+
+          <button className="submit-button"
+            onClick={(e) => this.pushBudget(e)}>Submit Budget
+          </button>
+
+        </form>
+      </div>
+    );
   }
 }
 

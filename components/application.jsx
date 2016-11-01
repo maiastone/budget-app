@@ -10,7 +10,7 @@ const auth = firebase.auth();
 
 
 function DashboardPage() {
-  return <div>Im a dashboard</div>
+  return <div>Im a dashboard</div>;
 }
 
 class Application extends React.Component {
@@ -38,11 +38,11 @@ class Application extends React.Component {
   }
 
   render() {
-    let child
+    let child;
     if (this.state.route === "dashboard") {
       child = <DashboardPage />;
     } else if (this.state.route === "budgetForm") {
-      child = <BudgetForm uid={this.state.user.uid}   />
+      child = <BudgetForm uid={this.state.user.uid}   />;
     }
     return (
       <div>
@@ -56,7 +56,7 @@ class Application extends React.Component {
           <h1>{this.state.user && this.state.user.email}</h1>
           {child}
       </div>
-    )
+    );
   }
 }
 
