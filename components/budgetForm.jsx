@@ -1,5 +1,7 @@
 import React from 'react';
 const firebase = require('../firebase');
+import { pick, map, extend } from 'lodash';
+import budgetList from './budgetList';
 
 
 class BudgetForm extends React.Component {
@@ -10,12 +12,20 @@ class BudgetForm extends React.Component {
         title: '',
         amount: ''
       },
-      updatedUserBudget: {
-        title: '',
-        amount: ''
-      }
+      budgets: {}
     };
   }
+
+  componentDidMount() {
+    const budgetRef = firebase.database().ref(`users/${this.props.uid}`);
+    budgetRef.on('value', (snapshot) => {
+      const userBudget = snapshot.val() || {};
+      this.setState({
+        budgets: map(userBudget, (val, key) => extend(val, { key }))
+      });
+    });
+  }
+
 
   pushBudget(e) {
     e.preventDefault();
@@ -54,7 +64,7 @@ class BudgetForm extends React.Component {
     return(
       <div className="card">
         <form className="budget-form">
-          
+
           <input className="budget-input" placeholder="budget item"
             onChange={(e) => this.setUserBudget(e, 'title')}>
           </input>
@@ -64,8 +74,13 @@ class BudgetForm extends React.Component {
           </input>
 
           <div className="radio-buttons">
-            Fixed<input className="radio" type="radio" value="fixed"></input>
-          Variable<input className="radio" type="radio" value="variable"></input>
+
+            Fixed<input className="radio" type="radio" value="true" onChange={(e)=>{this.setUserBudget(e, 'fixed')}}></input>
+
+          Variable<input className="radio" type="radio" value="true"
+             onChange={(e)=>{this.setUserBudget(e, 'variable')}}></input>
+
+
           </div>
 
           <button className="submit-button"
@@ -73,6 +88,8 @@ class BudgetForm extends React.Component {
           </button>
 
         </form>
+
+        <budgetList budgets={this.state.budgets} />
       </div>
     );
   }
