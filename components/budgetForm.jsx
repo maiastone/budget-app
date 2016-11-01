@@ -1,7 +1,7 @@
 import React from 'react';
 const firebase = require('../firebase');
 import { pick, map, extend } from 'lodash';
-import budgetList from './budgetList';
+import BudgetList from './budgetList';
 
 
 class BudgetForm extends React.Component {
@@ -12,7 +12,7 @@ class BudgetForm extends React.Component {
         title: '',
         amount: ''
       },
-      budgets: {}
+      budgets: []
     };
   }
 
@@ -75,11 +75,11 @@ class BudgetForm extends React.Component {
 
           <div className="radio-buttons">
 
-            Fixed<input className="radio" type="radio" value="true" onChange={(e)=>{this.setUserBudget(e, 'fixed')}}></input>
+            Fixed<input className="radio" type="radio" value="true"
+            onChange={(e)=>{this.setUserBudget(e, 'fixed')}}></input>
 
           Variable<input className="radio" type="radio" value="true"
              onChange={(e)=>{this.setUserBudget(e, 'variable')}}></input>
-
 
           </div>
 
@@ -89,7 +89,7 @@ class BudgetForm extends React.Component {
 
         </form>
 
-        <budgetList budgets={this.state.budgets} />
+        <BudgetList budgets={this.state.budgets} />
       </div>
     );
   }

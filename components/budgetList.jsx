@@ -1,14 +1,14 @@
 import React from 'react';
 
-const budgetList = (props) => {
+const BudgetList = (props) => {
   const {budgets} = props;
     return(
       <ul>
         {budgets.map(m =>
-          <li key={m.key}>{m.amount}{m.title}</li>)}
+          <li key={m.key}>{m.userBudget.amount}{m.userBudget.title}</li>)}
       </ul>
     );
   };
 
 
-module.exports = budgetList;
+module.exports = BudgetList;
