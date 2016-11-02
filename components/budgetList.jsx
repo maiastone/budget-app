@@ -1,33 +1,29 @@
 import React from 'react';
+import BudgetCard from './budgetCard';
 
 
-const BudgetList = (props) => {
-  const {updateExpense, budgets} = props;
+class BudgetList extends React.Component {
 
-    return(
-      <div>
+  render() {
+  let budgets = this.props.budgets;
+  let budgetCards = budgets.map(m => {
+  return (
+    <BudgetCard className="rendered-card"
+      key={m.key}
+      id={m.key}
+      title={m.userBudget.title}
+      budget={m.userBudget.budget}
+    />
+  );
+});
 
-        {budgets.map(m =>
-          <div className="rendered-card" id={m.key}
-              key={m.key}>Title:{m.userBudget.title}
-              <br/>
-              Budget:{m.userBudget.budget}
-
-          <input label="enter expense"
-            className="expense-input"
-            type="text"
-            placeholder="enter expense"
-            onChange={(e)=>updateExpense(e)}
-             ></input>
-
-          <button className="">Submit</button>
-          <p>remaining:</p>
-          </div>)}
-
-
-      </div>
+  return (
+    <div>
+      {budgetCards}
+    </div>
     );
-  };
+  }
+}
 
 
 module.exports = BudgetList;
