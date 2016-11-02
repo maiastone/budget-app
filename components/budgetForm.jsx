@@ -10,7 +10,8 @@ class BudgetForm extends React.Component {
     this.state = {
       userBudget: {
         title: '',
-        amount: ''
+        budget: '',
+        expense: ''
       },
       budgets: []
     };
@@ -40,25 +41,26 @@ class BudgetForm extends React.Component {
     this.setState({ userBudget: userBudget });
   }
 
-  updateFirebaseUserBudget(e) {
-    e.preventDefault();
-    let updatedUserBudget = this.state.updatedUserBudget;
-    const budgetRef = firebase.database().ref(`users/${this.props.uid}`);
-    budgetRef.update({updatedUserBudget});
+  updateExpense(e) {
+    // e.preventDefault();
+    let expense = {expense: e.target.value};
+    const budgetRef = firebase.database().ref(`users/${this.props.uid}/${this.state.budgets[5].key}/userBudget`);
+    budgetRef.update({expense});
   }
 
-  setUpdatedUserBudget(e, key) {
-    let updatedUserBudget = this.state.updatedUserBudget;
-    updatedUserBudget[key] = e.target.value;
-    this.setState({ updatedUserBudget: updatedUserBudget });
-  }
+  // updateFirebaseUserBudget(e) {
+  //   e.preventDefault();
+  //   let updatedUserBudget = this.state.updatedUserBudget;
+  //   const budgetRef = firebase.database().ref(`users/${this.props.uid}`);
+  //   budgetRef.update({updatedUserBudget});
+  // }
+  //
+  // setUpdatedUserBudget(e, key) {
+  //   let updatedUserBudget = this.state.updatedUserBudget;
+  //   updatedUserBudget[key] = e.target.value;
+  //   this.setState({ updatedUserBudget: updatedUserBudget });
+  // }
 
-  // <input placeholder="update budget amount"
-  //   onChange={(e) => this.setUpdatedUserBudget(e, 'amount')}>
-  // </input>
-  // <button className="update submitBudget"
-  //   onClick={(e) => this.updateFirebaseUserBudget(e)}>Update Budget
-  // </button>
 
   render() {
     return(
@@ -73,18 +75,18 @@ class BudgetForm extends React.Component {
 
             <input className="budget-input"
               placeholder="budget amount"
-              onChange={(e) => this.setUserBudget(e, 'amount')}>
+              onChange={(e) => this.setUserBudget(e, 'budget')}>
             </input>
 
             <div className="radio-buttons">
 
               <input className="radio"
               type="radio" value="true"
-              onChange={(e)=>{this.setUserBudget(e, 'fixed')}}></input>Fixed
+              onClick={(e)=>{this.setUserBudget(e, 'fixed')}}></input>Fixed
 
               <input className="radio"
               type="radio" value="true"
-              onChange={(e)=>{this.setUserBudget(e, 'variable')}}></input>Variable
+              onClick={(e)=>{this.setUserBudget(e, 'variable')}}></input>Variable
 
             </div>
 
@@ -94,7 +96,7 @@ class BudgetForm extends React.Component {
 
           </form>
         </div>
-        <BudgetList budgets={this.state.budgets} />
+        <BudgetList budgets={this.state.budgets} updateExpense={this.updateExpense.bind(this)} />
       </div>
     );
   }
