@@ -13,6 +13,8 @@ class BudgetList extends React.Component {
       id={m.key}
       title={m.userBudget.title}
       budget={m.userBudget.budget}
+      updateExpense={this.props.updateExpense}
+      setExpenseState={this.props.setExpenseState}
     />
   );
 });

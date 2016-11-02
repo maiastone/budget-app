@@ -1,7 +1,7 @@
 import React from 'react';
 
 const BudgetCard = (props) => {
-  const {id, title, budget, updateExpense} = props;
+  const {id, title, budget, updateExpense, setExpenseState} = props;
 
   return(
     <div id={id}>
@@ -14,10 +14,12 @@ const BudgetCard = (props) => {
       className="expense-input"
       type="text"
       placeholder="enter expense"
-      onChange={(e)=>updateExpense(e)}>
+      onChange={(e) => setExpenseState(e)}>
       </input>
 
-      <button className="">Submit</button>
+      <button className=""
+        onClick={(e)=>updateExpense(e)}
+        >Submit</button>
 
       <p>remaining:</p>
 
