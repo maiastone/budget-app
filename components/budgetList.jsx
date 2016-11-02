@@ -3,10 +3,15 @@ import React from 'react';
 const BudgetList = (props) => {
   const {budgets} = props;
     return(
-      <ul>
+      <div>
         {budgets.map(m =>
-          <li key={m.key}>{m.userBudget.amount}{m.userBudget.title}</li>)}
-      </ul>
+          <div className="rendered-card"
+              key={m.key}>{m.userBudget.title}{m.userBudget.amount}
+              <input className="expense-input" type="text" placeholder="expense"></input>
+              </div>)}
+
+
+      </div>
     );
   };
 

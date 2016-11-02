@@ -62,33 +62,38 @@ class BudgetForm extends React.Component {
 
   render() {
     return(
-      <div className="card">
-        <form className="budget-form">
+      <div>
+        <div className="card">
+          <form className="budget-form">
 
-          <input className="budget-input" placeholder="budget item"
-            onChange={(e) => this.setUserBudget(e, 'title')}>
-          </input>
+            <input className="budget-input"
+              placeholder="budget item"
+              onChange={(e) => this.setUserBudget(e, 'title')}>
+            </input>
 
-          <input className="budget-input" placeholder="budget amount"
-            onChange={(e) => this.setUserBudget(e, 'amount')}>
-          </input>
+            <input className="budget-input"
+              placeholder="budget amount"
+              onChange={(e) => this.setUserBudget(e, 'amount')}>
+            </input>
 
-          <div className="radio-buttons">
+            <div className="radio-buttons">
 
-            Fixed<input className="radio" type="radio" value="true"
-            onChange={(e)=>{this.setUserBudget(e, 'fixed')}}></input>
+              <input className="radio"
+              type="radio" value="true"
+              onChange={(e)=>{this.setUserBudget(e, 'fixed')}}></input>Fixed
 
-          Variable<input className="radio" type="radio" value="true"
-             onChange={(e)=>{this.setUserBudget(e, 'variable')}}></input>
+              <input className="radio"
+              type="radio" value="true"
+              onChange={(e)=>{this.setUserBudget(e, 'variable')}}></input>Variable
 
-          </div>
+            </div>
 
-          <button className="submit-button"
-            onClick={(e) => this.pushBudget(e)}>Submit Budget
-          </button>
+            <button className="submit-button"
+              onClick={(e) => this.pushBudget(e)}>Submit Budget
+            </button>
 
-        </form>
-
+          </form>
+        </div>
         <BudgetList budgets={this.state.budgets} />
       </div>
     );
