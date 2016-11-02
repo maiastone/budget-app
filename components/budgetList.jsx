@@ -6,8 +6,9 @@ const BudgetList = (props) => {
 
     return(
       <div>
+
         {budgets.map(m =>
-          <div className="rendered-card"
+          <div className="rendered-card" id={m.key}
               key={m.key}>Title:{m.userBudget.title}
               <br/>
               Budget:{m.userBudget.budget}
@@ -27,7 +28,6 @@ const BudgetList = (props) => {
       </div>
     );
   };
-
 
 
 module.exports = BudgetList;
