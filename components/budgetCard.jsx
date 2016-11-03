@@ -1,8 +1,8 @@
 import React from 'react';
 
 const BudgetCard = (props) => {
-  const {id, title, budget, updateExpense, setExpenseState} = props;
-
+  const {id, title, budget, updateExpense, setExpenseState, expense} = props;
+  const userBudget = {id: id, title: title, expense: expense, budget: budget }
   return(
     <div id={id} className="budget-card">
       <h2>{title}</h2>
@@ -13,11 +13,9 @@ const BudgetCard = (props) => {
         className="expense-input"
         type="text"
         placeholder="enter expense"
-        onChange={(e) => setExpenseState(e)}>
-      </input>
-
+        />
       <button className="submit-expense"
-        onClick={(e)=>updateExpense(e)}
+        onClick={(e)=>updateExpense(e, userBudget)}
         >Submit</button>
 
       <p>remaining:</p>

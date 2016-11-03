@@ -11,7 +11,7 @@ class BudgetForm extends React.Component {
       userBudget: {
         title: '',
         budget: '',
-        expense: ''
+        expense: []
       },
       budgets: []
     };
@@ -30,9 +30,10 @@ class BudgetForm extends React.Component {
   pushBudget(e) {
     e.preventDefault();
     let userBudget = this.state.userBudget;
+    console.log(userBudget)
     const budgetRef = firebase.database().ref(`users/${this.props.uid}`);
     budgetRef.push({userBudget});
-    this.setState({userBudget: {title: '', budget: ''}})
+    this.setState({userBudget: {title: '', budget: ''}});
   }
 
   setUserBudget(e, key) {
@@ -41,16 +42,16 @@ class BudgetForm extends React.Component {
     this.setState({ userBudget: userBudget });
   }
 
-  setExpenseState(e) {
-    this.setState({userBudget: {expense: e.target.value}});
-  }
+  // setExpenseState(e) {
+  //   this.setState({userBudget: {expense: e.target.value}});
+  // }
 
-  updateExpense(e) {
-    let expense = this.state.userBudget.expense;
-    let key = e.target.parentElement.id;
-    debugger;
-    const budgetRef = firebase.database().ref(`users/${this.props.uid}/${key}/userBudget`);
-    budgetRef.update({expense});
+  updateExpense(e, userBudget) {
+    let expense = e.target.previousSibling.value;
+    e.target.previousSibling.value = '';
+    userBudget.expense.push(expense);
+    const budgetRef = firebase.database().ref(`users/${this.props.uid}/${userBudget.id}/userBudget`);
+    budgetRef.update({expense: userBudget.expense});
   }
 
 
@@ -93,7 +94,7 @@ class BudgetForm extends React.Component {
 
           </form>
         </div>
-        <BudgetList budgets={this.state.budgets} updateExpense={this.updateExpense.bind(this)} setExpenseState={this.setExpenseState.bind(this)} />
+        <BudgetList budgets={this.state.budgets} updateExpense={this.updateExpense.bind(this)} />
       </div>
     );
   }

@@ -7,13 +7,16 @@ class BudgetList extends React.Component {
   render() {
   let budgets = this.props.budgets;
   let budgetCards = budgets.map(m => {
-    console.log(m.userBudget)
+  if(!m.userBudget.expense) {
+     m.userBudget.expense = [];
+  }   
   return (
     <BudgetCard className="rendered-card"
       key={m.key}
       id={m.key}
       title={m.userBudget.title}
       budget={m.userBudget.budget}
+      expense={m.userBudget.expense}
       updateExpense={this.props.updateExpense}
       setExpenseState={this.props.setExpenseState}
     />
