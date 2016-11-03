@@ -3,6 +3,7 @@ const firebase = require('../firebase');
 import { pick, map, extend } from 'lodash';
 import BudgetForm from './budgetForm';
 const auth = firebase.auth();
+import LogIn from './signin';
 
 // 1) track the state for the current route
 // 2) based on current route, render the right page
@@ -10,7 +11,11 @@ const auth = firebase.auth();
 
 
 function DashboardPage() {
-  return <div>Im a dashboard</div>;
+
+  return <div>Im a dashboard
+            <LogIn />
+        </div>;
+
 }
 
 class Application extends React.Component {
@@ -48,12 +53,14 @@ class Application extends React.Component {
       <div>
           <nav>
           super sweet nav
-            <button onClick={() => this.transitionRoute("dashboard")}>dashboardpage</button>
-            <button onClick={() => this.transitionRoute("budgetForm")}>budgetForm</button>
+            <button className="nav-button"
+              onClick={() => this.transitionRoute("dashboard")}>
+              dashboardpage</button>
+            <button className="nav-button"
+              onClick={() => this.transitionRoute("budgetForm")}>
+              budgetForm</button>
           </nav>
-         <button className="sign"
-          onClick={this.signIn}>Sign In</button>
-          <h1>{this.state.user && this.state.user.email}</h1>
+
           {child}
       </div>
     );

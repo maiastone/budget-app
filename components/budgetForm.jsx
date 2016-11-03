@@ -72,11 +72,15 @@ class BudgetForm extends React.Component {
 
               <input className="radio"
               type="radio" value="true"
-              onClick={(e)=>{this.setUserBudget(e, 'fixed')}}></input>Fixed
+              name="type"
+              onChange={(e)=>this.setUserBudget(e)}>
+              </input>Fixed
 
               <input className="radio"
               type="radio" value="true"
-              onClick={(e)=>{this.setUserBudget(e, 'variable')}}></input>Variable
+              name="type"
+              onChange={(e)=>this.setUserBudget(e)}>
+              </input>Variable
 
             </div>
 

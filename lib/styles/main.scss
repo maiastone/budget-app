@@ -102,5 +102,10 @@ input[type=radio]:checked ~ label{
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+}
 
+.nav-button {
+  width: 100px;
+  height: 50px;
+  background-color: #FFFFD1;
 }
