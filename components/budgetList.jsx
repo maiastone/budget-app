@@ -5,28 +5,29 @@ import BudgetCard from './budgetCard';
 class BudgetList extends React.Component {
 
   render() {
-  let budgets = this.props.budgets;
-  let budgetCards = budgets.map(m => {
-  if(!m.userBudget.expense) {
-     m.userBudget.expense = [];
-  }   
-  return (
-    <BudgetCard className="rendered-card"
-      key={m.key}
-      id={m.key}
-      title={m.userBudget.title}
-      budget={m.userBudget.budget}
-      expense={m.userBudget.expense}
-      updateExpense={this.props.updateExpense}
-      setExpenseState={this.props.setExpenseState}
-    />
-  );
-});
+    const budgets = this.props.budgets;
+    const budgetCards = budgets.map(m => {
+      if (!m.userBudget.actualEntry) {
+        m.userBudget.actualEntry = [];
+      }
+      return (
+        <BudgetCard className="rendered-card"
+          key={m.key}
+          id={m.key}
+          title={m.userBudget.title}
+          budget={m.userBudget.budget}
+          dueDate={m.userBudget.dueDate}
+          actualEntry={m.userBudget.actualEntry}
+          currentdate={m.userBudget.actualEntry.currentDate}
+          updateExpense={this.props.updateExpense}
+        />
+      );
+    });
 
-  return (
-    <div>
-      {budgetCards}
-    </div>
+    return (
+      <div>
+        {budgetCards}
+      </div>
     );
   }
 }

@@ -58,7 +58,6 @@ class Application extends React.Component {
           </nav>
 
 
-
           <h1>DashBoard</h1>
 
           {child}

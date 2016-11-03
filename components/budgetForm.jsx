@@ -1,6 +1,6 @@
 import React from 'react';
 const firebase = require('../firebase');
-import { pick, map, extend } from 'lodash';
+import { map, extend } from 'lodash';
 import BudgetList from './budgetList';
 
 
@@ -11,9 +11,10 @@ class BudgetForm extends React.Component {
       userBudget: {
         title: '',
         budget: '',
-        expense: []
+        dueDate: '' || Date.now(),
+        actualEntry: [],
       },
-      budgets: []
+      budgets: [],
     };
   }
 
@@ -22,37 +23,42 @@ class BudgetForm extends React.Component {
     budgetRef.on('value', (snapshot) => {
       const userBudget = snapshot.val() || {};
       this.setState({
-        budgets: map(userBudget, (val, key) => extend(val, { key }))
+        budgets: map(userBudget, (val, key) => extend(val, { key })),
       });
     });
   }
 
   pushBudget(e) {
     e.preventDefault();
-    let userBudget = this.state.userBudget;
+    const userBudget = this.state.userBudget;
     const budgetRef = firebase.database().ref(`users/${this.props.uid}`);
-    budgetRef.push({userBudget});
-    this.setState({userBudget: {title: '', budget: ''}});
+    budgetRef.push({ userBudget });
+    this.setState({ userBudget: { title: '', budget: '' } });
   }
 
   setUserBudget(e, key) {
-    let userBudget = this.state.userBudget;
+    const userBudget = this.state.userBudget;
     userBudget[key] = e.target.value;
-    this.setState({ userBudget: userBudget });
+    this.setState({ userBudget });
   }
 
   updateExpense(e, userBudget) {
-    let expense = e.target.previousSibling.value;
+    const actualExpense = e.target.previousSibling.value;
     e.target.previousSibling.value = '';
-    userBudget.expense.push(expense);
-    const budgetRef = firebase.database().ref(`users/${this.props.uid}/${userBudget.id}/userBudget`);
-    budgetRef.update({expense: userBudget.expense});
+    console.log(userBudget.actualEntry)
+      userBudget.actualEntry.push({
+      expense: actualExpense,
+      currentDate: Date.now(),
+    });
+    const budgetRef =
+      firebase.database().ref(`users/${this.props.uid}/${userBudget.id}/userBudget/actualEntry`);
+    budgetRef.update(userBudget.actualEntry);
   }
 
 
   render() {
-    let { title, budget} = this.state.userBudget;
-    return(
+    const { title, budget } = this.state.userBudget;
+    return (
       <div>
         <div className="card">
           <form className="budget-form">
@@ -67,20 +73,21 @@ class BudgetForm extends React.Component {
               onChange={(e) => this.setUserBudget(e, 'budget')}>
             </input>
 
-            <div className="radio-buttons">
+            <input className="date"
+              type="date" />
 
+            <div className="radio-buttons">
               <input className="radio"
-              type="radio" value="true"
-              name="type"
-              onChange={(e)=>this.setUserBudget(e)}>
+                type="radio" value="true"
+                name="type"
+                onChange={(e) => this.setUserBudget(e)}>
               </input>Fixed
 
               <input className="radio"
-              type="radio" value="true"
-              name="type"
-              onChange={(e)=>this.setUserBudget(e)}>
+                type="radio" value="true"
+                name="type"
+                onChange={(e) => this.setUserBudget(e)}>
               </input>Variable
-
             </div>
 
             <button className="submit-button"
@@ -89,7 +96,8 @@ class BudgetForm extends React.Component {
 
           </form>
         </div>
-        <BudgetList budgets={this.state.budgets} updateExpense={this.updateExpense.bind(this)} />
+        <BudgetList budgets={this.state.budgets}
+                    updateExpense={this.updateExpense.bind(this)} />
       </div>
     );
   }
