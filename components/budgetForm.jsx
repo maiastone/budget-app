@@ -32,6 +32,7 @@ class BudgetForm extends React.Component {
     let userBudget = this.state.userBudget;
     const budgetRef = firebase.database().ref(`users/${this.props.uid}`);
     budgetRef.push({userBudget});
+    this.setState({userBudget: {title: '', budget: ''}})
   }
 
   setUserBudget(e, key) {
@@ -47,24 +48,26 @@ class BudgetForm extends React.Component {
   updateExpense(e) {
     let expense = this.state.userBudget.expense;
     let key = e.target.parentElement.id;
+    debugger;
     const budgetRef = firebase.database().ref(`users/${this.props.uid}/${key}/userBudget`);
     budgetRef.update({expense});
   }
 
 
   render() {
+    let { title, budget} = this.state.userBudget;
     return(
       <div>
         <div className="card">
           <form className="budget-form">
 
             <input className="budget-input"
-              placeholder="budget item"
+              placeholder="budget item" value= {title}
               onChange={(e) => this.setUserBudget(e, 'title')}>
             </input>
 
             <input className="budget-input"
-              placeholder="budget amount"
+              placeholder="budget amount" value = {budget}
               onChange={(e) => this.setUserBudget(e, 'budget')}>
             </input>
 

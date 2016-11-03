@@ -2,7 +2,6 @@ import React from 'react';
 const firebase = require('../firebase');
 import { pick, map, extend } from 'lodash';
 import BudgetForm from './budgetForm';
-const auth = firebase.auth();
 import LogIn from './signin';
 
 // 1) track the state for the current route
@@ -11,12 +10,9 @@ import LogIn from './signin';
 
 
 function DashboardPage() {
-
-  return <div>Im a dashboard
-            <LogIn />
-        </div>;
-
+  return <div></div>;
 }
+
 
 class Application extends React.Component {
   constructor() {
@@ -25,11 +21,6 @@ class Application extends React.Component {
       user: null,
       route: "dashboard"
     };
-  }
-
-  signIn() {
-    let google = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(google);
   }
 
   componentDidMount() {
@@ -51,15 +42,24 @@ class Application extends React.Component {
     }
     return (
       <div>
-          <nav>
-          super sweet nav
+
+          <nav className="nav-bar">
+            <div>
             <button className="nav-button"
               onClick={() => this.transitionRoute("dashboard")}>
               dashboardpage</button>
             <button className="nav-button"
               onClick={() => this.transitionRoute("budgetForm")}>
               budgetForm</button>
+            </div>
+            <div>
+              <LogIn user={this.state.user} />
+            </div>
           </nav>
+
+
+
+          <h1>DashBoard</h1>
 
           {child}
       </div>

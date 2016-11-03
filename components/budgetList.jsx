@@ -7,6 +7,7 @@ class BudgetList extends React.Component {
   render() {
   let budgets = this.props.budgets;
   let budgetCards = budgets.map(m => {
+    console.log(m.userBudget)
   return (
     <BudgetCard className="rendered-card"
       key={m.key}
