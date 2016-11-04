@@ -1,4 +1,4 @@
-
+@import './partials/reset';
 
 * {
   box-sizing: border-box;
@@ -9,12 +9,29 @@ body {
 
 }
 
+ul {
+  margin-left: 40px;
+  padding-top: 20px;
+}
+
 li {
   list-style: none;
+  padding: 8px 5px;
+}
+
+h1 {
+  font-size: 32px;
+  margin: 20px;
+}
+
+h2 {
+  padding-top: 20px;
+  font-family: 'Bowlby One SC', cursive;
 }
 
 h3 {
   font-size: 24px;
+  padding: 10px;
 }
 
 .budget-form {
@@ -42,8 +59,8 @@ h3 {
   flex-direction: row;
   align-items: center;
   position: relative;
-
   height: 50px;
+  margin-left: 50px;
 
 }
 
@@ -61,9 +78,8 @@ h3 {
 }
 
 .card p {
-  line-height: 1em;
-  font-size: 20px;
-  margin: 15px;
+  font-size: 16px;
+  margin: 0px 5px 25px 40px;
 }
 
 .card-h2 {
@@ -81,6 +97,9 @@ h3 {
   width: 150px;
   border-radius: 5px;
   margin: 20px auto;
+  background-color: #0B4E37;
+  color: #ffffff;
+  font-size: 18px;
 }
 
 .radio {
@@ -102,6 +121,7 @@ h3 {
   width: 100px;
   height: 50px;
   background-color: #FFFFD1;
+  font-size: 12px;
 }
 
 .nav-bar {
@@ -112,8 +132,8 @@ h3 {
 
 .sign-button {
   @extend .nav-button;
-  height: 30px;
-  width: 60px;
+  height: 50px;
+  width: 100px;
   margin-left: 10px;
 }
 
@@ -123,5 +143,17 @@ h3 {
 }
 
 .card-title {
-  margin-left: 20px;
+  margin-left: 35px;
+  font-size: 32px;
+}
+
+.expense-display {
+  background-color: lighten(#FFFFD1, 5%);
+  width: 75%;
+  margin: 5px auto;
+  border: 1px inset;
+}
+
+.date {
+  font-size: 12px;
 }

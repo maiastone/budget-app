@@ -45,8 +45,7 @@ class BudgetForm extends React.Component {
   updateExpense(e, userBudget) {
     const actualExpense = e.target.previousSibling.value;
     e.target.previousSibling.value = '';
-    console.log(userBudget.actualEntry)
-      userBudget.actualEntry.push({
+    userBudget.actualEntry.push({
       expense: actualExpense,
       currentDate: Date.now(),
     });
