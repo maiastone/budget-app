@@ -7,7 +7,7 @@ const BudgetCard = (props) => {
   const userBudget = { id, title, budget, dueDate, actualEntry, currentDate };
   const formatDueDate = moment().format("MMM Do");
   const expenseArray = actualEntry.map((expense) =>
-    <li><span className="date">{formatDueDate}</span> ${expense.expense}</li>);
+    <li><span className="expense-date">{formatDueDate}</span> ${expense.expense}</li>);
   const integer = actualEntry.map((expense) => parseInt(expense.expense, 10));
   const total = integer.reduce((sum, num) => sum + num, 0);
   return (
