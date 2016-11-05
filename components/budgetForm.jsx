@@ -6,7 +6,7 @@ import Application from './application';
 
 
 const BudgetForm = (props) => {
-  const { budgets, title, budget, dueDate, updateExpense, setUserBudget } = props;
+  const { budgets, title, budget, dueDate, updateExpense, setUserBudget, pushBudget } = props;
 
   return (
     <div>
@@ -43,7 +43,7 @@ const BudgetForm = (props) => {
           </div>
 
           <button className="submit-button"
-            onClick={(e) => this.pushBudget(e)}>Submit Budget
+            onClick={(e) => pushBudget(e)}>Submit Budget
           </button>
 
         </form>

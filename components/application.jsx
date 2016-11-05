@@ -86,6 +86,7 @@ class Application extends React.Component {
               uid={this.state.user.uid}
               budgets={this.state.budgets}
               setUserBudget={this.setUserBudget.bind(this)}
+              pushBudget={this.pushBudget.bind(this)}
               />;
     } else if (this.state.route === 'reports') {
       child = <Reports />;
