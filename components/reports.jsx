@@ -17,6 +17,12 @@ class Reports extends React.Component {
       return <li key={index}>{budgets}</li>;
     });
 
+    const totalIntegers = allBudgetsArray.map((budget) =>
+      parseInt(budget, 10));
+
+    const allBudgetsTotal =
+      totalIntegers.reduce((sum, num) => sum + num, 0);
+
     const allTitlesArray = [];
     for (let i = 0; i < budgets.length; i++) {
       const allTitles = this.props.budgets[i].userBudget.title;
@@ -30,8 +36,10 @@ class Reports extends React.Component {
 
     return (
       <div className="monthly-list">
-        <ul>{allTitlesList}</ul>
-        <ul>{allBudgetsList}</ul>
+        <h2>Monthly Budget</h2>
+        <ul>{allTitlesList}<p>Total</p></ul>
+        <ul>{allBudgetsList}{allBudgetsTotal}</ul>
+
       </div>
       );
   }
