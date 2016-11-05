@@ -1,46 +1,57 @@
 import React from 'react';
 const firebase = require('../firebase');
+import { map, extend } from 'lodash';
+import BudgetList from './budgetList';
+import Application from './application';
 
 
-class BudgetForm extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      userBudget: {
-        title: '',
-        amount: ''
-      }
-    };
-  }
+const BudgetForm = (props) => {
+  const { budgets, title, budget, dueDate, updateExpense, setUserBudget, pushBudget } = props;
 
-  pushBudget(e) {
-    e.preventDefault();
-    let userBudget = this.state.userBudget;
-    const budgetRef = firebase.database().ref(`users/${this.props.uid}`);
-    budgetRef.push({userBudget});
-  }
+  return (
+    <div>
+      <div className="card">
+        <form className="budget-form">
 
-  setUserBudget(e, key) {
-    let userBudget = this.state.userBudget;
-    userBudget[key] = e.target.value;
-    this.setState({ userBudget: userBudget });
-  }
+          <input className="budget-input"
+            placeholder="budget item" value= {title}
+            onChange={(e) => setUserBudget(e, 'title')}>
+          </input>
 
-  render() {
-    return(
-      <form>
-        <input placeholder="budget item"
-          onChange={(e) => this.setUserBudget(e, 'title')}>
-        </input>
-        <input placeholder="budget amount"
-          onChange={(e) => this.setUserBudget(e, 'amount')}>
-        </input>
-        <button className="submitBudget"
-          onClick={(e) => this.pushBudget(e)}>Submit Budget
-        </button>
-      </form>
-    )
-  }
+          <input className="budget-input"
+            placeholder="budget amount" value = {budget}
+            onChange={(e) => setUserBudget(e, 'budget')}>
+          </input>
+
+          <input className="date"
+            type="date" value={dueDate}
+            onChange={(e) => setUserBudget(e, 'dueDate')}
+            />
+
+          <div className="radio-buttons">
+            <input className="radio"
+              type="radio" value="true"
+              name="type"
+              onChange={(e) => setUserBudget(e)}>
+            </input>Fixed
+
+            <input className="radio"
+              type="radio" value="true"
+              name="type"
+              onChange={(e) => setUserBudget(e)}>
+            </input>Variable
+          </div>
+
+          <button className="submit-button"
+            onClick={(e) => pushBudget(e)}>Submit Budget
+          </button>
+
+        </form>
+      </div>
+      <BudgetList budgets={budgets}
+                  updateExpense={updateExpense} />
+    </div>
+  );
 }
 
 
