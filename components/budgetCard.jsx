@@ -6,7 +6,6 @@ import Application from './application';
 const BudgetCard = (props) => {
   const { id, title, budget, dueDate, actualEntry, currentDate, updateExpense } = props;
   const userBudget = { id, title, budget, dueDate, actualEntry, currentDate };
-  console.log(actualEntry)
   const formatDueDate = moment().format('MMM Do');
   const expenseArray = userBudget.actualEntry.map((expense) =>
     <li><span className="expense-date">{formatDueDate}</span> ${expense.expense}</li>);

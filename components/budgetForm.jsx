@@ -6,7 +6,7 @@ import Application from './application';
 
 
 const BudgetForm = (props) => {
-  const { budgets, title, budget, updateExpense } = props;
+  const { budgets, title, budget, dueDate, updateExpense, setUserBudget } = props;
 
   return (
     <div>
@@ -15,28 +15,30 @@ const BudgetForm = (props) => {
 
           <input className="budget-input"
             placeholder="budget item" value= {title}
-            onChange={(e) => this.setUserBudget(e, 'title')}>
+            onChange={(e) => setUserBudget(e, 'title')}>
           </input>
 
           <input className="budget-input"
             placeholder="budget amount" value = {budget}
-            onChange={(e) => this.setUserBudget(e, 'budget')}>
+            onChange={(e) => setUserBudget(e, 'budget')}>
           </input>
 
           <input className="date"
-            type="date" />
+            type="date" value={dueDate}
+            onChange={(e) => setUserBudget(e, 'dueDate')}
+            />
 
           <div className="radio-buttons">
             <input className="radio"
               type="radio" value="true"
               name="type"
-              onChange={(e) => this.setUserBudget(e)}>
+              onChange={(e) => setUserBudget(e)}>
             </input>Fixed
 
             <input className="radio"
               type="radio" value="true"
               name="type"
-              onChange={(e) => this.setUserBudget(e)}>
+              onChange={(e) => setUserBudget(e)}>
             </input>Variable
           </div>
 

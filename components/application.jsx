@@ -24,7 +24,7 @@ class Application extends React.Component {
       userBudget: {
         title: '',
         budget: '',
-        dueDate: '' || Date.now(),
+        dueDate: '',
         actualEntry: [],
       },
     };
@@ -85,6 +85,7 @@ class Application extends React.Component {
       child = <BudgetForm
               uid={this.state.user.uid}
               budgets={this.state.budgets}
+              setUserBudget={this.setUserBudget.bind(this)}
               />;
     } else if (this.state.route === 'reports') {
       child = <Reports />;
