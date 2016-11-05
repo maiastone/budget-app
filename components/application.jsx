@@ -4,22 +4,16 @@ import { pick, map, extend } from 'lodash';
 import BudgetForm from './budgetForm';
 import LogIn from './signin';
 import Reports from './reports';
+import Dashboard from './Dashboard.jsx'
 
 // 1) track the state for the current route
 // 2) based on current route, render the right page
 // 3) provide a callback to transition the route
-
-
-function DashboardPage() {
-  return <div><h1>Today</h1></div>;
-}
-
 class Application extends React.Component {
   constructor() {
     super();
     this.state = {
       user: null,
-      route: 'dashboard',
       budgets: [],
       userBudget: {
         title: '',
@@ -27,6 +21,7 @@ class Application extends React.Component {
         dueDate: '',
         actualEntry: [],
       },
+      route: 'dashboard',
     };
   }
 
@@ -64,7 +59,6 @@ class Application extends React.Component {
   updateExpense(e, userBudget) {
     e.preventDefault();
     const actualExpense = e.target.previousSibling.value;
-    debugger;
     e.target.previousSibling.value = '';
     userBudget.actualEntry.push({
       expense: actualExpense,
@@ -82,7 +76,10 @@ class Application extends React.Component {
   render() {
     let child;
     if (this.state.route === 'dashboard') {
-      child = <DashboardPage />;
+      child = <Dashboard
+              user={this.state.user}
+              budgets={this.state.budgets}
+              />;
     } else if (this.state.route === 'budgetForm') {
       child = <BudgetForm
               uid={this.state.user.uid}
