@@ -64,7 +64,6 @@ class Application extends React.Component {
   updateExpense(e, userBudget) {
     e.preventDefault();
     const actualExpense = e.target.previousSibling.value;
-    debugger;
     e.target.previousSibling.value = '';
     userBudget.actualEntry.push({
       expense: actualExpense,
@@ -92,7 +91,9 @@ class Application extends React.Component {
               updateExpense={this.updateExpense.bind(this)}
               />;
     } else if (this.state.route === 'reports') {
-      child = <Reports />;
+      child = <Reports
+              budgets={this.state.budgets}
+              />;
     }
     return (
       <div>

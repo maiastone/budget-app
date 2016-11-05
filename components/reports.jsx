@@ -1,16 +1,21 @@
 import React from 'react';
-import BudgetForm from './budgetForm'
-
-const Reports = (props) => {
-  // const { totalExpenses } = props;
 
 
-  return (
+class Reports extends React.Component {
+
+
+  render() {
+    const budgets = this.props.budgets;
+
+
+    return (
       <div>
-        hey
-      </div>
+        <ul>
 
-  );
-};
+        </ul>
+      </div>
+      );
+  }
+}
 
 module.exports = Reports;

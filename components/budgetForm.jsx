@@ -25,8 +25,8 @@ const BudgetForm = (props) => {
 
           <input className="date"
             type="date" value={dueDate}
-            onChange={(e) => setUserBudget(e, 'dueDate')}
-            />
+            onChange={(e) => setUserBudget(e, 'dueDate')}>
+          </input>
 
           <div className="radio-buttons">
             <input className="radio"
