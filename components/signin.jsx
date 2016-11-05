@@ -1,21 +1,18 @@
 import React from 'react';
-import {user, signIn, signOut} from '../firebase.js';
+import { signIn, signOut } from '../firebase.js';
 
 
-
-
-const LogIn  = (props) => {
+const LogIn = (props) => {
   const { user } = props;
 
 
-
-    return(
-      <div> {user ?
-        <p>Signed in as {user && user.email}
-        <button className="sign-button" onClick={()=>signOut()}>Sign Out</button></p>
-        : <button className="sign-button"
-                  onClick={()=>signIn()}>Sign In</button>}
-      </div>
+  return (
+    <div> {user ?
+      <p>Signed in as {user && user.email}
+      <button className="sign-button" onClick={() => signOut()}>Sign Out</button></p>
+      : <button className="sign-button"
+                onClick={() => signIn()}>Sign In</button>}
+    </div>
     );
 };
 module.exports = LogIn;

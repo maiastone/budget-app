@@ -1,6 +1,6 @@
 import React from 'react';
 import BudgetCard from './budgetCard';
-
+import Application from './application';
 
 class BudgetList extends React.Component {
 

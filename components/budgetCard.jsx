@@ -1,11 +1,12 @@
 import React from 'react';
 import moment from 'moment';
+import Application from './application';
 
 
 const BudgetCard = (props) => {
   const { id, title, budget, dueDate, actualEntry, currentDate, updateExpense } = props;
   const userBudget = { id, title, budget, dueDate, actualEntry, currentDate };
-  const formatDueDate = moment().format("MMM Do");
+  const formatDueDate = moment().format('MMM Do');
   const expenseArray = actualEntry.map((expense) =>
     <li><span className="expense-date">{formatDueDate}</span> ${expense.expense}</li>);
   const integer = actualEntry.map((expense) => parseInt(expense.expense, 10));

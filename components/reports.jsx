@@ -1,13 +1,14 @@
 import React from 'react';
-
+import BudgetForm from './budgetForm'
 
 const Reports = (props) => {
-  const { total } = props;
+  // const { totalExpenses } = props;
+
 
   return (
-    <div>
-      hey
-    </div>
+      <div>
+        hey
+      </div>
 
   );
 };

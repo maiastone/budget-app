@@ -11,11 +11,8 @@ import Reports from './reports';
 
 
 function DashboardPage() {
-  return <div>
-      <h1>Today</h1>
-  </div>;
+  return <div><h1>Today</h1></div>;
 }
-
 
 class Application extends React.Component {
   constructor() {
@@ -23,13 +20,53 @@ class Application extends React.Component {
     this.state = {
       user: null,
       route: 'dashboard',
+      budgets: [],
+      userBudget: {
+        title: '',
+        budget: '',
+        dueDate: '' || Date.now(),
+        actualEntry: [],
+      },
     };
   }
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged((user) => {
-      this.setState({ user });
+      const budgetRef = firebase.database().ref(`users/${this.props.uid}`);
+      budgetRef.on('value', (snapshot) => {
+        const userBudget = snapshot.val() || {};
+        this.setState({
+          user,
+          budgets: map(userBudget, (val, key) => extend(val, { key })),
+        });
+      });
     });
+  }
+
+  pushBudget(e) {
+    e.preventDefault();
+    const userBudget = this.state.userBudget;
+    const budgetRef = firebase.database().ref(`users/${this.props.uid}`);
+    budgetRef.push({ userBudget });
+    this.setState({ userBudget: { title: '', budget: '' } });
+  }
+
+  setUserBudget(e, key) {
+    const userBudget = this.state.userBudget;
+    userBudget[key] = e.target.value;
+    this.setState({ userBudget });
+  }
+
+  updateExpense(e, userBudget) {
+    const actualExpense = e.target.previousSibling.value;
+    e.target.previousSibling.value = '';
+    userBudget.actualEntry.push({
+      expense: actualExpense,
+      currentDate: Date.now(),
+    });
+    const budgetRef =
+    firebase.database().ref(`users/${this.props.uid}/${userBudget.id}/userBudget/actualEntry`);
+    budgetRef.update(userBudget.actualEntry);
   }
 
   transitionRoute(route) {
