@@ -32,13 +32,17 @@ class Application extends React.Component {
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged((user) => {
-      const budgetRef = firebase.database().ref(`users/${this.props.uid}`);
-      budgetRef.on('value', (snapshot) => {
-        const userBudget = snapshot.val() || {};
-        this.setState({
-          user,
-          budgets: map(userBudget, (val, key) => extend(val, { key })),
-        });
+      this.setState({ user });
+      this.setDatabaseRef();
+    });
+  }
+
+  setDatabaseRef() {
+    const budgetRef = firebase.database().ref(`users/${this.state.user.uid}`);
+    budgetRef.on('value', (snapshot) => {
+      const userBudget = snapshot.val() || {};
+      this.setState({
+        budgets: map(userBudget, (val, key) => extend(val, { key })),
       });
     });
   }
@@ -46,7 +50,7 @@ class Application extends React.Component {
   pushBudget(e) {
     e.preventDefault();
     const userBudget = this.state.userBudget;
-    const budgetRef = firebase.database().ref(`users/${this.props.uid}`);
+    const budgetRef = firebase.database().ref(`users/${this.state.user.uid}`);
     budgetRef.push({ userBudget });
     this.setState({ userBudget: { title: '', budget: '' } });
   }
@@ -78,7 +82,10 @@ class Application extends React.Component {
     if (this.state.route === 'dashboard') {
       child = <DashboardPage />;
     } else if (this.state.route === 'budgetForm') {
-      child = <BudgetForm uid={this.state.user.uid} />;
+      child = <BudgetForm
+              uid={this.state.user.uid}
+              budgets={this.state.budgets}
+              />;
     } else if (this.state.route === 'reports') {
       child = <Reports />;
     }

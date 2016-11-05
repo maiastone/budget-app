@@ -6,10 +6,11 @@ import Application from './application';
 const BudgetCard = (props) => {
   const { id, title, budget, dueDate, actualEntry, currentDate, updateExpense } = props;
   const userBudget = { id, title, budget, dueDate, actualEntry, currentDate };
+  console.log(actualEntry)
   const formatDueDate = moment().format('MMM Do');
-  const expenseArray = actualEntry.map((expense) =>
+  const expenseArray = userBudget.actualEntry.map((expense) =>
     <li><span className="expense-date">{formatDueDate}</span> ${expense.expense}</li>);
-  const integer = actualEntry.map((expense) => parseInt(expense.expense, 10));
+  const integer = userBudget.actualEntry.map((expense) => parseInt(expense.expense, 10));
   const total = integer.reduce((sum, num) => sum + num, 0);
   return (
     <div id={id} className="budget-card">
@@ -34,7 +35,7 @@ const BudgetCard = (props) => {
         placeholder="enter expense"
       />
       <button className="submit-button"
-        onClick={(e) => updateExpense(e, userBudget)}
+        onClick={(e) => this.updateExpense(e, userBudget).bind(this)}
         >Submit Expense</button>
 
     </div>

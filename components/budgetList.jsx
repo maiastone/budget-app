@@ -4,6 +4,7 @@ import Application from './application';
 
 class BudgetList extends React.Component {
 
+
   render() {
     const budgets = this.props.budgets;
     const budgetCards = budgets.map(m => {
