@@ -62,14 +62,16 @@ class Application extends React.Component {
   }
 
   updateExpense(e, userBudget) {
+    e.preventDefault();
     const actualExpense = e.target.previousSibling.value;
+    debugger;
     e.target.previousSibling.value = '';
     userBudget.actualEntry.push({
       expense: actualExpense,
       currentDate: Date.now(),
     });
     const budgetRef =
-    firebase.database().ref(`users/${this.props.uid}/${userBudget.id}/userBudget/actualEntry`);
+    firebase.database().ref(`users/${this.state.user.uid}/${userBudget.id}/userBudget/actualEntry`);
     budgetRef.update(userBudget.actualEntry);
   }
 
@@ -87,6 +89,7 @@ class Application extends React.Component {
               budgets={this.state.budgets}
               setUserBudget={this.setUserBudget.bind(this)}
               pushBudget={this.pushBudget.bind(this)}
+              updateExpense={this.updateExpense.bind(this)}
               />;
     } else if (this.state.route === 'reports') {
       child = <Reports />;

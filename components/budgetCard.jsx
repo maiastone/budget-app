@@ -34,7 +34,7 @@ const BudgetCard = (props) => {
         placeholder="enter expense"
       />
       <button className="submit-button"
-        onClick={(e) => this.updateExpense(e, userBudget).bind(this)}
+        onClick={(e) => updateExpense(e, userBudget)}
         >Submit Expense</button>
 
     </div>
