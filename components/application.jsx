@@ -25,7 +25,7 @@ class Application extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     firebase.auth().onAuthStateChanged((user) => {
       this.setState({ user });
       this.setDatabaseRef();
@@ -110,7 +110,6 @@ class Application extends React.Component {
               <LogIn user={this.state.user} />
             </div>
           </nav>
-
           {child}
       </div>
     );
