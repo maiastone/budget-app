@@ -1,39 +1,10 @@
 import React from 'react';
-//
-// }
-// debugger;
-// const reducedExpenseArray = [];
-// for (let i = 0; i < allActualsArray.length; i++) {
-//   for (let j = 0; j < allActualsArray[j].expense.length; j++);
-//   const eachExpense = allActualsArray[i][j].expense;
-//   const eachBudgetExpense = allActualsArray[i][j].expense;
-//   reducedExpenseArray.push(eachBudgetExpense);
-//
-// }
-
-// const actualEntries = [];
-// const reportLists = budgets.map(m => {
-//   if (!m.userBudget.actualEntry) {
-//     m.userBudget.actualEntry = [];
-//   }
-//
-//   const actualEntry = {m.userBudget.actualEntry}
-// })
-//
-// console.log(actualEntry);
-// console.log(expense)
 
 
 class Reports extends React.Component {
 
-
   render() {
     const budgets = this.props.budgets;
-    const allActualsArray = [];
-    for (let i = 0; i < budgets.length; i++) {
-      const eachBudgetExpense = this.props.budgets[i].userBudget.actualEntry;
-      allActualsArray.push(eachBudgetExpense);
-    }
 
     const allBudgetsArray = [];
     for (let i = 0; i < budgets.length; i++) {
@@ -58,34 +29,63 @@ class Reports extends React.Component {
     const allTitlesList = allTitlesArray.map((title, index) => { // eslint-disable-line
       return <li key={index}>{title}</li>;
     });
-    let totalArray = [];
+
+
+    const totalActualsArray = [];
     budgets.forEach((budget) => {
       let budgetTotal = 0;
-      if(budget.userBudget.actualEntry) {
+      if (budget.userBudget.actualEntry) {
         budget.userBudget.actualEntry.forEach((entry) => {
-        budgetTotal += +entry.expense;
-        })
+          budgetTotal += +entry.expense;
+        });
       }
-      totalArray.push(budgetTotal);
-    })
-    console.log(totalArray)
+      totalActualsArray.push(budgetTotal);
+    });
+
+    const allActualsList = totalActualsArray.map((expense, index) => { // eslint-disable-line
+      return <li key={index}>{expense}</li>;
+    });
+
+    const totalActuals = totalActualsArray.reduce((sum, num) => sum + num, 0);
+
+
+    const weeklyBudgetsArray = [];
+    for (let i = 0; i < allBudgetsArray.length; i++) {
+      const weeklyBudget = +allBudgetsArray[i] / 4;
+      weeklyBudgetsArray.push(weeklyBudget);
+    }
+
+    const weeklyBudgetList = weeklyBudgetsArray.map((expense, index) => { // eslint-disable-line
+      return <li key={index}>{expense}</li>;
+    });
 
     return (
-      <div className = "monthly-container">
-      <div className="monthly-list">
-        <h2>Monthly Budget</h2>
-        <ul>{allTitlesList}</ul>
-        <ul>{allBudgetsList}</ul>
-      </div>
-      <div className="monthly-total">
-        <h4>Total Budget</h4>
-        <h2>${allBudgetsTotal}</h2>
-      </div>
-        <ul></ul>
-        <ul></ul>
+      <div className = "reports-container">
+
+        <div className = "monthly-container">
+          <div className="monthly-total">
+            <h2>Monthly Budgets:</h2>
+            <h2 className="card-total">Total ${allBudgetsTotal}</h2>
+            <h2 className="card-total">Spent ${totalActuals}</h2>
+          </div>
+          <div className="monthly-list">
+            <ul>{allTitlesList}</ul>
+            <ul>{allBudgetsList}</ul><ul>{allActualsList}</ul>
+          </div>
+        </div>
+
+        <div className = "small-reports-container">
+          <h2 className="small-card-total">Weekly Budget:</h2>
+          <h2 className="small-card-total">Total ${allBudgetsTotal / 4}</h2>
+          <div className="weekly-list">
+            <ul>{allTitlesList}</ul>
+            <ul className="weekly-budget-list">{weeklyBudgetList}</ul>
+          </div>
+        </div>
+
       </div>
       );
-    }
+  }
   }
 
 module.exports = Reports;
