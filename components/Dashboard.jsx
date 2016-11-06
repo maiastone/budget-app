@@ -11,7 +11,6 @@ class Dashboard extends React.Component {
     super();
     this.state = {
       user: null,
-      budgets: null,
     };
   }
 
@@ -23,7 +22,7 @@ class Dashboard extends React.Component {
   // }
   componentWillReceiveProps(nextProps) {
     if (nextProps !== this.state) {
-      this.setState({ user: this.props.user, budgets: this.props.budgets })
+      this.setState({ user: this.props.user})
 
     }
   }
@@ -56,7 +55,7 @@ class Dashboard extends React.Component {
         <div>Today, you have ... to spend on ...</div>
         <div>bruh</div>
         <div>You have this much to spend this week:</div>
-        <DashboardGraphs budgets= {this.state.budgets}/>
+        <DashboardGraphs budgets= {this.props.budgets}/>
       </div>
       );
     } else {
