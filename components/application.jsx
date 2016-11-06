@@ -5,11 +5,6 @@ import BudgetForm from './budgetForm';
 import LogIn from './signin';
 import Reports from './reports';
 
-// 1) track the state for the current route
-// 2) based on current route, render the right page
-// 3) provide a callback to transition the route
-
-
 function DashboardPage() {
   return <div><h1>Today</h1></div>;
 }
@@ -67,7 +62,7 @@ class Application extends React.Component {
     e.target.previousSibling.value = '';
     userBudget.actualEntry.push({
       expense: actualExpense,
-      currentDate: Date.now(),
+      currentDate: '',
     });
     const budgetRef =
     firebase.database().ref(`users/${this.state.user.uid}/${userBudget.id}/userBudget/actualEntry`);

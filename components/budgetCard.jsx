@@ -6,7 +6,7 @@ import Application from './application';
 const BudgetCard = (props) => {
   const { id, title, budget, dueDate, actualEntry, currentDate, updateExpense } = props;
   const userBudget = { id, title, budget, dueDate, actualEntry, currentDate };
-  const formatDueDate = moment().format('MMM Do');
+  const formatDueDate = moment(currentDate).format('MMM Do');
 
 
   const expenseArray = userBudget.actualEntry.map((expense) =>
@@ -15,7 +15,6 @@ const BudgetCard = (props) => {
   const integer = userBudget.actualEntry.map((expense) => parseInt(expense.expense, 10));
 
   const total = integer.reduce((sum, num) => sum + num, 0);
-  
 
 
   return (
@@ -33,8 +32,9 @@ const BudgetCard = (props) => {
       </div>
 
       <input className="date"
-        type="date"
-        />
+        type="date" value="currentDate">
+      </input>
+
       <input className="expense-input"
         type="text"
         label="enter expense"

@@ -34,6 +34,12 @@ h3 {
   padding: 10px;
 }
 
+h4 {
+  padding-top: 20px;
+  font-family: 'Bowlby One SC', cursive;
+  margin-left: 50%;
+}
+
 .budget-form {
   display: flex;
   flex-direction: column;
@@ -43,7 +49,7 @@ h3 {
 .budget-input, .date {
     height: 50px;
     width: 75%;
-    margin: 5px auto;
+    margin: 10px auto 5px;
     border-radius: 5px;
     font-size: 24px;
     padding-left: 10px;
@@ -153,6 +159,8 @@ h3 {
   width: 75%;
   margin: 5px auto;
   border: 1px inset;
+  overflow: scroll;
+  max-height: 200px;
 }
 
 .expense-date {
@@ -160,8 +168,21 @@ h3 {
 }
 
 .monthly-list {
-  width: 33%;
   display: flex;
   justify-content: space-around;
-  margin: 5%;
+  margin: 2% 5% 0 5%;
+}
+
+.monthly-container {
+  background-color: #FFFFD1;
+  border-radius: 5px;
+  border: 1px inset;
+  width: 60%;
+  padding-bottom: 10px;
+  margin: 50px auto;
+}
+
+.monthly-total {
+  @extend .monthly-list;
+  margin: 0 5%;
 }

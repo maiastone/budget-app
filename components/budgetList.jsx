@@ -21,6 +21,7 @@ class BudgetList extends React.Component {
           actualEntry={m.userBudget.actualEntry}
           currentdate={m.userBudget.actualEntry.currentDate}
           updateExpense={this.props.updateExpense}
+          setUserBudget={this.props.setUserBudget}
         />
       );
     });
