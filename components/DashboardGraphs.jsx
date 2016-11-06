@@ -14,8 +14,8 @@ const DashboardGraphs = (props) => {
     <div>
       <svg width="600" height="40" viewBox="0 0 600 40" xmlns="http://www.w3.org/2000/svg">
            <g>
-             <rect fill="#D0011B" x="0" y="0" width={((sumExpenses / totalbudget) * 600)} height="40" />
-             <rect fill="#50E3C2" x={((sumExpenses / totalbudget) * 600)} y="0" width={600 - (sumExpenses / totalbudget) * 600} height="40" />
+             <rect fill="#FF603A" x="0" y="0" width={((sumExpenses / totalbudget) * 600)} height="40" />
+             <rect fill="#FFFFD1" x={((sumExpenses / totalbudget) * 600)} y="0" width={600 - (sumExpenses / totalbudget) * 600} height="40" />
            </g>
          </svg>
     </div>
