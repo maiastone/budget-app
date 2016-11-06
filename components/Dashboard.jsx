@@ -11,7 +11,7 @@ class Dashboard extends React.Component {
     super();
     this.state = {
       user: null,
-      budgets: [],
+      budgets: null,
     };
   }
 
@@ -21,9 +21,11 @@ class Dashboard extends React.Component {
   // } else {
   //   todaysSpending = budgets;
   // }
-  componentWillReceiveProps() {
-    this.setState({ user: this.props.user, budgets: this.props.budgets
-    })
+  componentWillReceiveProps(nextProps) {
+    if (nextProps !== this.state) {
+      this.setState({ user: this.props.user, budgets: this.props.budgets })
+
+    }
   }
 
   render() {
@@ -54,12 +56,12 @@ class Dashboard extends React.Component {
         <div>Today, you have ... to spend on ...</div>
         <div>bruh</div>
         <div>You have this much to spend this week:</div>
-        <DashboardGraphs budget= {this.state.budgets}/>
+        <DashboardGraphs budgets= {this.state.budgets}/>
       </div>
       );
     } else {
       return (
-        <div>Hello</div>
+        <div></div>
       )
     }
   }
