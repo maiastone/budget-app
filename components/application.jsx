@@ -1,9 +1,11 @@
 import React from 'react';
 const firebase = require('../firebase');
 import { pick, map, extend } from 'lodash';
-import BudgetForm from './budgetForm';
-import LogIn from './signin';
-import Reports from './reports';
+import BudgetForm from './budgetForm.jsx';
+import LogIn from './signin.jsx';
+import AppLogo from './AppLogo.jsx';
+import Reports from './reports.jsx';
+import SignInPage from './SignInPage.jsx';
 import Dashboard from './Dashboard.jsx'
 
 
@@ -79,6 +81,9 @@ class Application extends React.Component {
 
   render() {
     let child;
+    if (!this.state.user) {
+      child = <SignInPage />;
+    }
     if (this.state.route === 'dashboard') {
       child = <Dashboard
               user={this.state.user}
@@ -102,6 +107,7 @@ class Application extends React.Component {
       <div>
 
           <nav className="nav-bar">
+            <AppLogo />
             <div>
             <button className="nav-button"
               onClick={() =>
