@@ -2,6 +2,17 @@ import React from 'react';
 
 
 class Reports extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      allowance: '',
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({ allowance: e.target.value });
+  }
 
   render() {
     const budgets = this.props.budgets;
@@ -59,6 +70,11 @@ class Reports extends React.Component {
       return <li key={index}>{expense}</li>;
     });
 
+    const allowance = this.state.allowance;
+    const weeklyTotal = allBudgetsTotal / 4;
+    const balance = allowance - weeklyTotal;
+
+
     return (
       <div className = "reports-container">
 
@@ -74,13 +90,23 @@ class Reports extends React.Component {
           </div>
         </div>
 
-        <div className = "small-reports-container">
-          <h2 className="small-card-total">Weekly Budget:</h2>
-          <h2 className="small-card-total">Total ${allBudgetsTotal / 4}</h2>
-          <div className="weekly-list">
-            <ul>{allTitlesList}</ul>
-            <ul className="weekly-budget-list">{weeklyBudgetList}</ul>
+        <div className = "monthly-container">
+          <div className="monthly-total">
+            <h2>Allowance</h2>
+            <input className="allowance-input" type="number"
+                    placeholder="enter allowance"
+                    onChange={this.handleChange}>
+            </input>
+
           </div>
+          <div className="monthly-total">
+            <h2 className="card-total">Weekly Budget:</h2>
+            <h2 className="card-total">Total ${weeklyTotal}</h2>
+          </div>
+          <div className="monthly-list">
+            <ul>{allTitlesList}</ul><ul>{weeklyBudgetList}</ul>
+          </div>
+          <h4>{balance}</h4>
         </div>
 
       </div>

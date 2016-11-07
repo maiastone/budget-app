@@ -32,7 +32,7 @@ const BudgetCard = (props) => {
       </div>
 
       <input className="date"
-        type="date" value="currentDate">
+        type="date">
       </input>
 
       <input className="expense-input"
