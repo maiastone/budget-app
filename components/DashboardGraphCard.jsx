@@ -10,14 +10,14 @@ const DashboardGraphs = (props) => {
   return (
     <div className="dashboardGraphs">
     <div>{title}</div>
-      <svg width="600" height="40" viewBox="0 0 600 40" xmlns="http://www.w3.org/2000/svg">
+      <svg width="600" height="40" viewBox="0 0 400 40" xmlns="http://www.w3.org/2000/svg">
            <g>
              <rect fill="#FF603A" x="0" y="0"
-             width={((sumExpenses / budget) * 600)}
+             width={((sumExpenses / budget) * 400)}
              height="40" />
              <rect fill="#FFFFD1"
-             x={((sumExpenses / budget) * 600) + 3} y="0"
-             width={600 - (sumExpenses / budget) * 600}
+             x={((sumExpenses / budget) * 400) + 3} y="0"
+             width={400 - (sumExpenses / budget) * 400}
              height="40" />
            </g>
          </svg>
