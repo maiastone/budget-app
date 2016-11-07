@@ -8,13 +8,10 @@ const config = {
   messagingSenderId: '765862225207',
 };
 
-firebase.initializeApp(config);
+export default firebase.initializeApp(config);
 
 const provider = new firebase.auth.GoogleAuthProvider();
 const auth = firebase.auth();
 
 export const signIn = () => auth.signInWithPopup(provider);
-export const signOut = () => firebase.auth.signOut();
-
-
-module.exports = firebase;
+export const signOut = () => auth.signOut();

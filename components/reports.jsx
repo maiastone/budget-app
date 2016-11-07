@@ -8,12 +8,12 @@ class Reports extends React.Component {
       allowance: '',
       // negativeNumber: false,
     };
-    // this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  // handleChange(e) {
-  //   this.setState({ allowance: e.target.value });
-  // }
+  handleChange(e) {
+    this.setState({ allowance: e.target.value });
+  }
   // if (totalIntegers.val < 0) {
   //   this.setState({ negativeNumber: true });
   // }
@@ -111,7 +111,9 @@ class Reports extends React.Component {
 
           <div className="report-header">
             <h2>Allowance: </h2>
-            <input className="allowance-input" type="number"
+            <input aria-label="enter-allowance"
+                    className="allowance-input"
+                    type="number"
                     placeholder="enter allowance"
                     onChange={this.handleChange}>
             </input>

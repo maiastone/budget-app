@@ -1,16 +1,16 @@
 import React from 'react';
-import { signIn, signOut } from '../firebase.js';
+import firebase, { signIn, signOut } from '../firebase.js';
 
 
 const LogIn = (props) => {
   const { user } = props;
 
   return (
-    <div> {user ?
-      <p>Signed in as {user && user.email}
-      <button className="sign-button"
+    <div className="signInButton"> {user ?
+      <p><button className="sign-button"
               onClick={() => signOut()}>
-              Sign Out</button></p>
+              Sign Out</button>
+      Signed in as {user && user.email}</p>
       : <button className="sign-button"
                 onClick={() => signIn()}>
                 Sign In</button>}

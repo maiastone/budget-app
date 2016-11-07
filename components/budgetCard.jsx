@@ -6,10 +6,10 @@ import moment from 'moment';
 const BudgetCard = (props) => {
   const { id, title, budget, actualEntry, currentDate, updateExpense, deleteCard } = props;
   const userBudget = { id, title, budget, actualEntry, currentDate };
-  const formatDueDate = moment().format('MMM Do');
-
   const expenseArray = userBudget.actualEntry.map((expense, key) =>
-    <li id={key}><span className="expense-date">{formatDueDate}</span> ${expense.expense}</li>);
+    <li id={key}>
+      <span className="expense-date">{moment(expense.currentDate).format('MMM Do')}</span> ${expense.expense}
+    </li>);
 
   const integer = userBudget.actualEntry.map((expense) => parseInt(expense.expense, 10));
 
@@ -26,30 +26,38 @@ const BudgetCard = (props) => {
       </div>
 
       <div className="expense-display">
-        <ul>Actual Expenses {expenseArray}</ul>
+        <h3>Actual Expenses </h3>
+        <ul>{expenseArray}</ul>
         <p>Total Expenses: ${total}</p>
       </div>
 
-      <input className="date"
-        type="date">
-      </input>
+      <input
+        aria-label="date-input"
+        className="date"
+        type="date"
+        onChange= {(e) => userBudget.currentDate = e.target.value}
+        />
 
-      <input className="expense-input"
-              type="text"
-              label="enter expense"
-              placeholder="enter expense"/>
+      <input
+        aria-label="expense-input"
+        className="expense-input"
+        type="number"
+        label="enter expense"
+        placeholder="enter expense"
+        />
 
       <div className="button-container">
-        <button className="delete-button"
-          onClick={(e) => deleteCard(e, userBudget)}
+        <button
+          className="delete-button"
+          onClick={(e) => deleteCard(e, id)}
           >Delete Budget
         </button>
-        <button className="submit-button"
+        <button
+          className="submit-button"
           onClick={(e) => updateExpense(e, userBudget)}
           >Submit Expense
         </button>
       </div>
-
     </div>
     );
 };

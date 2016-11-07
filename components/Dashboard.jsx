@@ -13,8 +13,8 @@ const Dashboard = (props) => {
 
   return (
     <div>
-      <div> Welcome back, {userName}!</div>
-      <div>Here are you're current budgets</div>
+      <div> Welcome back {userName}!</div>
+      <div>Here are your current budgets</div>
       <DashboardGraphs budgets={budgets} />
     </div>
   );
