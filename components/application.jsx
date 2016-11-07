@@ -1,5 +1,5 @@
 import React from 'react';
-const firebase = require('../firebase');
+import firebase from '../firebase';
 import { pick, map, extend } from 'lodash';
 import BudgetForm from './budgetForm';
 import LogIn from './signin';

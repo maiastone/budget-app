@@ -8,12 +8,12 @@ class Reports extends React.Component {
       allowance: '',
       // negativeNumber: false,
     };
-    // this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  // handleChange(e) {
-  //   this.setState({ allowance: e.target.value });
-  // }
+  handleChange(e) {
+    this.setState({ allowance: e.target.value });
+  }
   // if (totalIntegers.val < 0) {
   //   this.setState({ negativeNumber: true });
   // }
@@ -77,6 +77,7 @@ class Reports extends React.Component {
     const allowance = this.state.allowance;
     const weeklyTotal = allBudgetsTotal / 4;
     const balance = allowance - weeklyTotal;
+    console.log(balance)
 
     const annualBudgetsArray = [];
     for (let i = 0; i < allBudgetsArray.length; i++) {

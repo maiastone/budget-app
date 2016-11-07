@@ -18,7 +18,7 @@ const BudgetForm = (props) => {
             onChange={(e) => setUserBudget(e, 'title')}>
           </input>
 
-          <input className="budget-input"
+          <input className="budget-input" type="number"
             placeholder="$ enter budget amount" value = {budget}
             onChange={(e) => setUserBudget(e, 'budget')}>
           </input>

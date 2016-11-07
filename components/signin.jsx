@@ -1,5 +1,5 @@
 import React from 'react';
-import { signIn, signOut } from '../firebase.js';
+import firebase, { signIn, signOut } from '../firebase.js';
 
 
 const LogIn = (props) => {

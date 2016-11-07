@@ -115,7 +115,6 @@ $submit-button-color: #385D5D;
 }
 
 $delete-button-color: #904334;
-
 .delete-button {
   @extend .submit-button;
   background-color: $delete-button-color;

@@ -35,7 +35,7 @@ const BudgetCard = (props) => {
       </input>
 
       <input className="expense-input"
-              type="text"
+              type="number"
               label="enter expense"
               placeholder="enter expense"/>
 
