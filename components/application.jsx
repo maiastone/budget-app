@@ -71,6 +71,8 @@ class Application extends React.Component {
     e.preventDefault();
     const newBudgets = pullAllBy(this.state.budgets, [{ key: id }], 'id');
     this.setState({ budgets: newBudgets });
+    const deletedBudgetRef = firebase.database().ref(`users/${this.state.user.uid}/${id}`)
+    deletedBudgetRef.remove();
   }
 
   transitionRoute(route) {
