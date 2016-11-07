@@ -52,7 +52,7 @@ const BudgetForm = (props) => {
                   updateExpense={updateExpense} />
     </div>
   );
-}
+};
 
 
 module.exports = BudgetForm;

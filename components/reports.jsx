@@ -74,39 +74,63 @@ class Reports extends React.Component {
     const weeklyTotal = allBudgetsTotal / 4;
     const balance = allowance - weeklyTotal;
 
+    const annualBudgetsArray = [];
+    for (let i = 0; i < allBudgetsArray.length; i++) {
+      const annualBudget = +allBudgetsArray[i] * 12;
+      annualBudgetsArray.push(annualBudget);
+    }
+    const annualBudgetList = annualBudgetsArray.map((expense, index) => {// eslint-disable-line
+      return <li key={index}>{expense}</li>;
+    });
+
+    const annualTotal = allBudgetsTotal * 12;
 
     return (
-      <div className = "reports-container">
+      <div className ="all-reports-container">
 
-        <div className = "monthly-container">
-          <div className="monthly-total">
+        <div className = "report-container">
+
+          <div className="report-header">
             <h2>Monthly Budgets:</h2>
             <h2 className="card-total">Total ${allBudgetsTotal}</h2>
             <h2 className="card-total">Spent ${totalActuals}</h2>
+            <h2 className="card-total">Remaining ${allBudgetsTotal - totalActuals}</h2>
           </div>
-          <div className="monthly-list">
+
+          <div className="report-list">
             <ul>{allTitlesList}</ul>
             <ul>{allBudgetsList}</ul><ul>{allActualsList}</ul>
           </div>
         </div>
 
-        <div className = "monthly-container">
-          <div className="monthly-total">
-            <h2>Allowance</h2>
+        <div className ="report-container">
+
+          <div className="report-header">
+            <h2>Allowance: </h2>
             <input className="allowance-input" type="number"
                     placeholder="enter allowance"
                     onChange={this.handleChange}>
             </input>
-
           </div>
-          <div className="monthly-total">
-            <h2 className="card-total">Weekly Budget:</h2>
+
+          <div className="report-header">
+            <h2>Weekly Budget:</h2>
             <h2 className="card-total">Total ${weeklyTotal}</h2>
           </div>
-          <div className="monthly-list">
+          <div className="report-list">
             <ul>{allTitlesList}</ul><ul>{weeklyBudgetList}</ul>
           </div>
-          <h4>{balance}</h4>
+          <h4>Savings: ${balance}</h4>
+        </div>
+
+        <div className = "report-container">
+          <div className="report-header">
+            <h2>Annual Budgets:</h2>
+            <h2 className="card-total">Total ${annualTotal}</h2>
+          </div>
+          <div className="report-list">
+            <ul>{allTitlesList}</ul><ul>{annualBudgetList}</ul>
+          </div>
         </div>
 
       </div>

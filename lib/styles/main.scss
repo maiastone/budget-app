@@ -10,7 +10,7 @@ body {
 }
 
 ul {
-  margin-left: 70px;
+  margin-left: 40px;
   padding-top: 20px;
 }
 
@@ -37,7 +37,7 @@ h3 {
 h4 {
   padding-top: 20px;
   font-family: 'Bowlby One SC', cursive;
-  margin-left: 50%;
+  margin-left: 25%;
 }
 
 .budget-form {
@@ -167,14 +167,14 @@ h4 {
   font-size: 12px;
 }
 
-.monthly-list, .monthly-total {
+.report-list, .report-header {
   display: flex;
   justify-content: flex-start;
   margin: 2%;
   align-items: middle;
 }
 
-.monthly-container {
+.report-container {
   background-color: #FFFFD1;
   border-radius: 5px;
   border: 1px inset;
@@ -184,11 +184,10 @@ h4 {
 }
 
 .card-total {
-  text-align: right;
   padding: 20px 5px 0 20px;
 }
 
 .allowance-input {
-  margin-left: 80px;
+  margin-left: 60px;
   border-radius: 5px;
 }
