@@ -12,35 +12,16 @@ const BudgetForm = (props) => {
     <div>
       <div className="card">
         <form className="budget-form">
-
+          <h2 className="card-title">Enter Budgets</h2>
           <input className="budget-input"
-            placeholder="budget item" value= {title}
+            placeholder="enter budget item" value= {title}
             onChange={(e) => setUserBudget(e, 'title')}>
           </input>
 
           <input className="budget-input"
-            placeholder="budget amount" value = {budget}
+            placeholder="$ enter budget amount" value = {budget}
             onChange={(e) => setUserBudget(e, 'budget')}>
           </input>
-
-          <input className="date"
-            type="date" value={dueDate}
-            onChange={(e) => setUserBudget(e, 'dueDate')}
-            />
-
-          <div className="radio-buttons">
-            <input className="radio"
-              type="radio" value="true"
-              name="type"
-              onChange={(e) => setUserBudget(e)}>
-            </input>Fixed
-
-            <input className="radio"
-              type="radio" value="true"
-              name="type"
-              onChange={(e) => setUserBudget(e)}>
-            </input>Variable
-          </div>
 
           <button className="submit-button"
             onClick={(e) => pushBudget(e)}>Submit Budget
@@ -52,7 +33,7 @@ const BudgetForm = (props) => {
                   updateExpense={updateExpense} />
     </div>
   );
-}
+};
 
 
 module.exports = BudgetForm;

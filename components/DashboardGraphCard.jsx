@@ -7,8 +7,6 @@ const DashboardGraphs = (props) => {
   const integer = userBudget.actualEntry.map((expense) => parseInt(expense.expense, 10))
   const sumExpenses = integer.reduce((sum, num) => sum + num, 0);
 
-  // const integer = userBudget.actualEntry.map((expense) => parseInt(expense.expense, 10));
-  // const total = integer.reduce((sum, num) => sum + num, 0);
   return (
     <div className="dashboardGraphs">
     <div>{title}</div>

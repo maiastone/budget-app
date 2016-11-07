@@ -1,7 +1,3 @@
-// we want the user name
-// we want the date
-// we want to display a pie graph/bar graph for how much you have spent on x budget
-// we want to display remaining $ to spend daily and monthly
 import React from 'react';
 import DashboardGraphs from './DashboardGraphs'
 

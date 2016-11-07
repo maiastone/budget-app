@@ -6,9 +6,7 @@ import LogIn from './signin';
 import Reports from './reports';
 import Dashboard from './Dashboard.jsx'
 
-// 1) track the state for the current route
-// 2) based on current route, render the right page
-// 3) provide a callback to transition the route
+
 class Application extends React.Component {
   constructor() {
     super();
@@ -18,7 +16,6 @@ class Application extends React.Component {
       userBudget: {
         title: '',
         budget: '',
-        dueDate: '',
         actualEntry: [],
       },
       route: 'dashboard',
@@ -58,15 +55,20 @@ class Application extends React.Component {
 
   updateExpense(e, userBudget) {
     e.preventDefault();
-    const actualExpense = e.target.previousSibling.value;
-    e.target.previousSibling.value = '';
+    const actualExpense = e.target.parentElement.previousSibling.value;
+    e.target.parentElement.previousSibling.value = '';
     userBudget.actualEntry.push({
       expense: actualExpense,
-      currentDate: Date.now(),
+      currentDate: '',
     });
     const budgetRef =
     firebase.database().ref(`users/${this.state.user.uid}/${userBudget.id}/userBudget/actualEntry`);
     budgetRef.update(userBudget.actualEntry);
+  }
+
+  deleteCard(e, userBudget) {
+    e.preventDefault();
+    this.state.userBudget.child().remove();
   }
 
   transitionRoute(route) {
@@ -87,9 +89,12 @@ class Application extends React.Component {
               setUserBudget={this.setUserBudget.bind(this)}
               pushBudget={this.pushBudget.bind(this)}
               updateExpense={this.updateExpense.bind(this)}
+              deleteCard={this.deleteCard.bind(this)}
               />;
     } else if (this.state.route === 'reports') {
-      child = <Reports />;
+      child = <Reports
+              budgets={this.state.budgets}
+              />;
     }
     return (
       <div>
@@ -97,17 +102,20 @@ class Application extends React.Component {
           <nav className="nav-bar">
             <div>
             <button className="nav-button"
-              onClick={() => this.transitionRoute('dashboard')}>
+              onClick={() =>
+              this.transitionRoute('dashboard')}>
               Home</button>
             <button className="nav-button"
               onClick={() => this.transitionRoute('budgetForm')}>
-              Budgets</button>
+              Enter Budget</button>
             <button className="nav-button"
-              onClick={() => this.transitionRoute('reports')}>
-              Reports</button>
+              onClick={() =>
+              this.transitionRoute('reports')}>
+              View Reports</button>
             </div>
             <div>
-              <LogIn user={this.state.user} />
+              <LogIn user={this.state.user}
+              />
             </div>
           </nav>
           {child}
