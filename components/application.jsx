@@ -58,11 +58,12 @@ class Application extends React.Component {
 
   updateExpense(e, userBudget) {
     e.preventDefault();
-    const actualExpense = e.target.previousSibling.value;
-    e.target.previousSibling.value = '';
+    debugger;
+    const actualExpense = e.target.parentElement.previousSibling.value;
+    e.target.parentElement.previousSibling.value = '';
     userBudget.actualEntry.push({
       expense: actualExpense,
-      currentDate: formatDueDate,
+      currentDate: '',
     });
     const budgetRef =
     firebase.database().ref(`users/${this.state.user.uid}/${userBudget.id}/userBudget/actualEntry`);
@@ -72,7 +73,6 @@ class Application extends React.Component {
   deleteCard(e, userBudget) {
     e.preventDefault();
     this.state.userBudget.child().remove();
-
   }
 
   transitionRoute(route) {
@@ -108,11 +108,11 @@ class Application extends React.Component {
               Home</button>
             <button className="nav-button"
               onClick={() => this.transitionRoute('budgetForm')}>
-              Budgets</button>
+              Enter Budget</button>
             <button className="nav-button"
               onClick={() =>
               this.transitionRoute('reports')}>
-              Reports</button>
+              View Reports</button>
             </div>
             <div>
               <LogIn user={this.state.user}

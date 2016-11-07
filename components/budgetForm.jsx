@@ -12,14 +12,14 @@ const BudgetForm = (props) => {
     <div>
       <div className="card">
         <form className="budget-form">
-
+          <h2 className="card-title">Enter Budgets</h2>
           <input className="budget-input"
-            placeholder="budget item" value= {title}
+            placeholder="enter budget item" value= {title}
             onChange={(e) => setUserBudget(e, 'title')}>
           </input>
 
           <input className="budget-input"
-            placeholder="budget amount" value = {budget}
+            placeholder="$ enter budget amount" value = {budget}
             onChange={(e) => setUserBudget(e, 'budget')}>
           </input>
 

@@ -6,10 +6,10 @@ import moment from 'moment';
 const BudgetCard = (props) => {
   const { id, title, budget, actualEntry, currentDate, updateExpense, deleteCard } = props;
   const userBudget = { id, title, budget, actualEntry, currentDate };
-
   const formatDueDate = moment().format('MMM Do');
-  const expenseArray = userBudget.actualEntry.map((expense) =>
-    <li><span className="expense-date">{formatDueDate}</span> ${expense.expense}</li>);
+
+  const expenseArray = userBudget.actualEntry.map((expense, key) =>
+    <li id={key}><span className="expense-date">{formatDueDate}</span> ${expense.expense}</li>);
 
   const integer = userBudget.actualEntry.map((expense) => parseInt(expense.expense, 10));
 
@@ -26,8 +26,8 @@ const BudgetCard = (props) => {
       </div>
 
       <div className="expense-display">
-      <ul>Actual Expenses {expenseArray}</ul>
-      <p>Total Expenses: ${total}</p>
+        <ul>Actual Expenses {expenseArray}</ul>
+        <p>Total Expenses: ${total}</p>
       </div>
 
       <input className="date"
@@ -35,20 +35,18 @@ const BudgetCard = (props) => {
       </input>
 
       <input className="expense-input"
-        type="text"
-        label="enter expense"
-        placeholder="enter expense"
-      />
+              type="text"
+              label="enter expense"
+              placeholder="enter expense"/>
 
       <div className="button-container">
-        <button className="submit-button"
-          onClick={(e) => updateExpense(e, userBudget)}
-          >Submit Expense
-        </button>
-
         <button className="delete-button"
           onClick={(e) => deleteCard(e, userBudget)}
           >Delete Budget
+        </button>
+        <button className="submit-button"
+          onClick={(e) => updateExpense(e, userBudget)}
+          >Submit Expense
         </button>
       </div>
 

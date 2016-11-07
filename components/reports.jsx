@@ -6,13 +6,17 @@ class Reports extends React.Component {
     super();
     this.state = {
       allowance: '',
+      // negativeNumber: false,
     };
-    this.handleChange = this.handleChange.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(e) {
-    this.setState({ allowance: e.target.value });
-  }
+  // handleChange(e) {
+  //   this.setState({ allowance: e.target.value });
+  // }
+  // if (totalIntegers.val < 0) {
+  //   this.setState({ negativeNumber: true });
+  // }
 
   render() {
     const budgets = this.props.budgets;
