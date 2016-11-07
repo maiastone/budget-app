@@ -60,7 +60,7 @@ class Application extends React.Component {
     e.target.parentElement.previousSibling.value = '';
     userBudget.actualEntry.push({
       expense: actualExpense,
-      currentDate: '',
+      currentDate: userBudget.currentDate || Date.now(),
     });
     const budgetRef =
     firebase.database().ref(`users/${this.state.user.uid}/${userBudget.id}/userBudget/actualEntry`);
@@ -71,7 +71,7 @@ class Application extends React.Component {
     e.preventDefault();
     const newBudgets = pullAllBy(this.state.budgets, [{ key: id }], 'id');
     this.setState({ budgets: newBudgets });
-    const deletedBudgetRef = firebase.database().ref(`users/${this.state.user.uid}/${id}`)
+    const deletedBudgetRef = firebase.database().ref(`users/${this.state.user.uid}/${id}`);
     deletedBudgetRef.remove();
   }
 
@@ -100,11 +100,12 @@ class Application extends React.Component {
               budgets={this.state.budgets}
               />;
     }
+
     return (
       <div>
 
-          <nav className="nav-bar">
-            <div>
+          <nav>
+            <div className="nav-bar">
             <button className="nav-button"
               onClick={() =>
               this.transitionRoute('dashboard')}>

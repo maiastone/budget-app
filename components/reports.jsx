@@ -77,7 +77,6 @@ class Reports extends React.Component {
     const allowance = this.state.allowance;
     const weeklyTotal = allBudgetsTotal / 4;
     const balance = allowance - weeklyTotal;
-    console.log(balance)
 
     const annualBudgetsArray = [];
     for (let i = 0; i < allBudgetsArray.length; i++) {
@@ -112,7 +111,9 @@ class Reports extends React.Component {
 
           <div className="report-header">
             <h2>Allowance: </h2>
-            <input className="allowance-input" type="number"
+            <input aria-label="enter-allowance"
+                    className="allowance-input"
+                    type="number"
                     placeholder="enter allowance"
                     onChange={this.handleChange}>
             </input>

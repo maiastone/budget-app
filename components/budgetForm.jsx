@@ -6,24 +6,32 @@ import Application from './application';
 
 
 const BudgetForm = (props) => {
-  const { budgets, title, budget, dueDate, updateExpense, setUserBudget, pushBudget, deleteCard } = props;
+  const { budgets, title, budget, updateExpense, setUserBudget, pushBudget, deleteCard } = props;
 
   return (
     <div>
       <div className="card">
         <form className="budget-form">
           <h2 className="card-title">Enter Budgets</h2>
-          <input className="budget-input"
-            placeholder="enter budget item" value= {title}
+          <input
+            aria-label="budget-title"
+            className="budget-input"
+            placeholder="enter budget item"
+            value= {title}
             onChange={(e) => setUserBudget(e, 'title')}>
           </input>
 
-          <input className="budget-input" type="number"
-            placeholder="$ enter budget amount" value = {budget}
+          <input
+            aria-label="budget-input"
+            className="budget-input"
+            type="number"
+            placeholder="$ enter budget amount"
+            value = {budget}
             onChange={(e) => setUserBudget(e, 'budget')}>
           </input>
 
-          <button className="submit-button"
+          <button
+            className="submit-button"
             onClick={(e) => pushBudget(e)}>Submit Budget
           </button>
 
