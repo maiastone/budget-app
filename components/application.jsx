@@ -9,6 +9,7 @@ function DashboardPage() {
   return <div><h1>Today</h1></div>;
 }
 
+
 class Application extends React.Component {
   constructor() {
     super();
@@ -19,7 +20,6 @@ class Application extends React.Component {
       userBudget: {
         title: '',
         budget: '',
-        dueDate: '',
         actualEntry: [],
       },
     };
@@ -62,11 +62,17 @@ class Application extends React.Component {
     e.target.previousSibling.value = '';
     userBudget.actualEntry.push({
       expense: actualExpense,
-      currentDate: '',
+      currentDate: formatDueDate,
     });
     const budgetRef =
     firebase.database().ref(`users/${this.state.user.uid}/${userBudget.id}/userBudget/actualEntry`);
     budgetRef.update(userBudget.actualEntry);
+  }
+
+  deleteCard(e, userBudget) {
+    e.preventDefault();
+    this.state.userBudget.child().remove();
+
   }
 
   transitionRoute(route) {
@@ -84,6 +90,7 @@ class Application extends React.Component {
               setUserBudget={this.setUserBudget.bind(this)}
               pushBudget={this.pushBudget.bind(this)}
               updateExpense={this.updateExpense.bind(this)}
+              deleteCard={this.deleteCard.bind(this)}
               />;
     } else if (this.state.route === 'reports') {
       child = <Reports
@@ -96,17 +103,20 @@ class Application extends React.Component {
           <nav className="nav-bar">
             <div>
             <button className="nav-button"
-              onClick={() => this.transitionRoute('dashboard')}>
+              onClick={() =>
+              this.transitionRoute('dashboard')}>
               Home</button>
             <button className="nav-button"
               onClick={() => this.transitionRoute('budgetForm')}>
               Budgets</button>
             <button className="nav-button"
-              onClick={() => this.transitionRoute('reports')}>
+              onClick={() =>
+              this.transitionRoute('reports')}>
               Reports</button>
             </div>
             <div>
-              <LogIn user={this.state.user} />
+              <LogIn user={this.state.user}
+              />
             </div>
           </nav>
 

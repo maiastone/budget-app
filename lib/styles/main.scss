@@ -106,13 +106,14 @@ h4 {
   margin: 20px auto;
   background-color: #0B4E37;
   color: #ffffff;
-  font-size: 18px;
+  font-size: 16px;
 }
 
-.radio {
-  height: 16px;
-  width: 30px;
-  margin-left: 20px;
+$delete-button-color: #904334;
+
+.delete-button {
+  @extend .submit-button;
+  background-color: $delete-button-color;
 }
 
 .budget-card {
@@ -123,7 +124,6 @@ h4 {
   justify-content: space-around;
 
 }
-
 .nav-button {
   width: 100px;
   height: 50px;
@@ -190,4 +190,9 @@ h4 {
 .allowance-input {
   margin-left: 60px;
   border-radius: 5px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-around;
 }

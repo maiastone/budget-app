@@ -1,14 +1,13 @@
 import React from 'react';
-import moment from 'moment';
 import Application from './application';
+import moment from 'moment';
 
 
 const BudgetCard = (props) => {
-  const { id, title, budget, dueDate, actualEntry, currentDate, updateExpense } = props;
-  const userBudget = { id, title, budget, dueDate, actualEntry, currentDate };
-  const formatDueDate = moment(currentDate).format('MMM Do');
+  const { id, title, budget, actualEntry, currentDate, updateExpense, deleteCard } = props;
+  const userBudget = { id, title, budget, actualEntry, currentDate };
 
-
+  const formatDueDate = moment().format('MMM Do');
   const expenseArray = userBudget.actualEntry.map((expense) =>
     <li><span className="expense-date">{formatDueDate}</span> ${expense.expense}</li>);
 
@@ -40,9 +39,18 @@ const BudgetCard = (props) => {
         label="enter expense"
         placeholder="enter expense"
       />
-      <button className="submit-button"
-        onClick={(e) => updateExpense(e, userBudget)}
-        >Submit Expense</button>
+
+      <div className="button-container">
+        <button className="submit-button"
+          onClick={(e) => updateExpense(e, userBudget)}
+          >Submit Expense
+        </button>
+
+        <button className="delete-button"
+          onClick={(e) => deleteCard(e, userBudget)}
+          >Delete Budget
+        </button>
+      </div>
 
     </div>
     );

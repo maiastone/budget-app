@@ -14,7 +14,7 @@ const provider = new firebase.auth.GoogleAuthProvider();
 const auth = firebase.auth();
 
 export const signIn = () => auth.signInWithPopup(provider);
-export const signOut = () => auth.signOut();
+export const signOut = () => firebase.auth.signOut();
 
 
 module.exports = firebase;

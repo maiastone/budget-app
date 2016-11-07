@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import BudgetCard from './budgetCard';
 import Application from './application';
 
-class BudgetList extends React.Component {
+class BudgetList extends Component {
 
 
   render() {
@@ -22,6 +22,7 @@ class BudgetList extends React.Component {
           currentdate={m.userBudget.actualEntry.currentDate}
           updateExpense={this.props.updateExpense}
           setUserBudget={this.props.setUserBudget}
+          deleteCard={this.props.deleteCard}
         />
       );
     });
@@ -33,6 +34,10 @@ class BudgetList extends React.Component {
     );
   }
 }
+
+BudgetList.propTypes = {
+  budget: PropTypes.number,
+};
 
 
 module.exports = BudgetList;
