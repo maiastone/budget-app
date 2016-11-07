@@ -1,6 +1,6 @@
 import React from 'react';
-import DashboardGraphs from './DashboardGraphs'
-import DashboardQuotes from './DashboardQuotes'
+import DashboardGraphs from './DashboardGraphs.jsx'
+import DashboardQuotes from './DashboardQuotes.jsx'
 
 const Dashboard = (props) => {
   const { user, budgets } = props;

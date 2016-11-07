@@ -1,6 +1,7 @@
 import React from 'react';
-const firebase = require('../firebase');
-import { pick, map, extend } from 'lodash';
+import firebase from '../firebase';
+import { pullAllBy, map, extend } from 'lodash';
+import update from 'react-addons-update';
 import BudgetForm from './budgetForm.jsx';
 import LogIn from './signin.jsx';
 import AppLogo from './AppLogo.jsx';
@@ -62,17 +63,20 @@ class Application extends React.Component {
     e.target.parentElement.previousSibling.value = '';
     userBudget.actualEntry.push({
       expense: actualExpense,
-      currentDate: '',
+      currentDate: userBudget.currentDate || Date.now(),
     });
     const budgetRef =
     firebase.database().ref(`users/${this.state.user.uid}/${userBudget.id}/userBudget/actualEntry`);
     budgetRef.update(userBudget.actualEntry);
   }
 
-  deleteCard(e) {
-    debugger;
+
+  deleteCard(e, id) {
     e.preventDefault();
-    this.state.userBudget.child().remove();
+    const newBudgets = pullAllBy(this.state.budgets, [{ key: id }], 'id');
+    this.setState({ budgets: newBudgets });
+    const deletedBudgetRef = firebase.database().ref(`users/${this.state.user.uid}/${id}`);
+    deletedBudgetRef.remove();
   }
 
   transitionRoute(route) {
@@ -103,10 +107,11 @@ class Application extends React.Component {
               budgets={this.state.budgets}
               />;
     }
+
     return (
       <div>
-
-          <nav className="nav-bar">
+          <nav>
+            <div className='nav-bar'>
             <AppLogo />
             <div>
             <button className="nav-button"
@@ -124,6 +129,7 @@ class Application extends React.Component {
             <div>
               <LogIn user={this.state.user}
               />
+            </div>
             </div>
           </nav>
           {child}

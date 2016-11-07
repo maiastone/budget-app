@@ -11,7 +11,8 @@ class DashboardGraphs extends React.Component {
         m.userBudget.actualEntry = [];
       }
       return (
-        <DashboardGraphCard className="graphz"
+        <DashboardGraphCard
+          className="graphz"
           key={m.key}
           title={m.userBudget.title}
           budget={m.userBudget.budget}

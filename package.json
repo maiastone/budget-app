@@ -49,6 +49,7 @@
     "rd3": "^0.7.2",
     "react": "^15.3.2",
     "react-addons-test-utils": "^15.3.2",
+    "react-addons-update": "^15.3.2",
     "react-d3-charts": "^1.0.45",
     "react-dom": "^15.3.2",
     "sass-loader": "^3.2.0",
