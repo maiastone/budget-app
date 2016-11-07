@@ -4,10 +4,7 @@ import { pick, map, extend } from 'lodash';
 import BudgetForm from './budgetForm';
 import LogIn from './signin';
 import Reports from './reports';
-
-function DashboardPage() {
-  return <div><h1>Today</h1></div>;
-}
+import Dashboard from './Dashboard.jsx'
 
 
 class Application extends React.Component {
@@ -15,17 +12,17 @@ class Application extends React.Component {
     super();
     this.state = {
       user: null,
-      route: 'dashboard',
       budgets: [],
       userBudget: {
         title: '',
         budget: '',
         actualEntry: [],
       },
+      route: 'dashboard',
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     firebase.auth().onAuthStateChanged((user) => {
       this.setState({ user });
       this.setDatabaseRef();
@@ -58,7 +55,6 @@ class Application extends React.Component {
 
   updateExpense(e, userBudget) {
     e.preventDefault();
-    debugger;
     const actualExpense = e.target.parentElement.previousSibling.value;
     e.target.parentElement.previousSibling.value = '';
     userBudget.actualEntry.push({
@@ -82,7 +78,10 @@ class Application extends React.Component {
   render() {
     let child;
     if (this.state.route === 'dashboard') {
-      child = <DashboardPage />;
+      child = <Dashboard
+              user={this.state.user}
+              budgets={this.state.budgets}
+              />;
     } else if (this.state.route === 'budgetForm') {
       child = <BudgetForm
               uid={this.state.user.uid}
@@ -119,7 +118,6 @@ class Application extends React.Component {
               />
             </div>
           </nav>
-
           {child}
       </div>
     );
