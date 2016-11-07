@@ -41,7 +41,7 @@ const BudgetCard = (props) => {
 
       <div className="button-container">
         <button className="delete-button"
-          onClick={(e) => deleteCard(e, userBudget)}
+          onClick={(e) => deleteCard(e)}
           >Delete Budget
         </button>
         <button className="submit-button"

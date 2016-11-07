@@ -4,8 +4,8 @@ const DashboardGraphs = (props) => {
   const { title, budget, actualEntry } = props;
   const userBudget = {title, budget, actualEntry}
 
-  const integer = userBudget.actualEntry.map((expense) => parseInt(expense.expense, 10))
-  const sumExpenses = integer.reduce((sum, num) => sum + num, 0);
+  const budgetInteger = userBudget.actualEntry.map((expense) => parseInt(expense.expense, 10))
+  const sumExpenses = budgetInteger.reduce((sum, num) => sum + num, 0);
 
   return (
     <div className="dashboardGraphs">

@@ -55,6 +55,7 @@ class Application extends React.Component {
 
   updateExpense(e, userBudget) {
     e.preventDefault();
+    console.log(userBudget)
     const actualExpense = e.target.parentElement.previousSibling.value;
     e.target.parentElement.previousSibling.value = '';
     userBudget.actualEntry.push({
@@ -66,7 +67,8 @@ class Application extends React.Component {
     budgetRef.update(userBudget.actualEntry);
   }
 
-  deleteCard(e, userBudget) {
+  deleteCard(e) {
+    debugger;
     e.preventDefault();
     this.state.userBudget.child().remove();
   }
