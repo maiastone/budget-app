@@ -47,6 +47,7 @@ const BudgetCard = (props) => {
         />
 
       <div className="button-container">
+
         <button
           className="delete-button"
           onClick={(e) => deleteCard(e, id)}

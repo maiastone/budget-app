@@ -1,5 +1,5 @@
 import React from 'react';
-import DashboardGraphCard from './DashboardGraphCard';
+import DashboardGraphCard from './DashboardGraphCard.jsx';
 
 class DashboardGraphs extends React.Component {
 
@@ -30,3 +30,21 @@ class DashboardGraphs extends React.Component {
 }
 
 module.exports = DashboardGraphs;
+
+
+// const totalActualsArray = [];
+// budgets.forEach((budget) => {
+//   let budgetTotal = 0;
+//   if (budget.userBudget.actualEntry) {
+//     budget.userBudget.actualEntry.forEach((entry) => {
+//       budgetTotal += +entry.expense;
+//     });
+//   }
+//   totalActualsArray.push(budgetTotal);
+//   parseInt(totalActualsArray, 10);
+//   if (totalActualsArray.length) {
+//     const totalActuals = totalActualsArray.reduce((sum, num) => sum + num, 0);
+//     return (
+//       <div>{totalActuals}</div>
+//     )
+//   }

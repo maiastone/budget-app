@@ -1,5 +1,6 @@
 import React from 'react';
-import DashboardGraphs from './DashboardGraphs'
+import DashboardGraphs from './DashboardGraphs.jsx'
+import DashboardQuotes from './DashboardQuotes.jsx'
 
 const Dashboard = (props) => {
   const { user, budgets } = props;
@@ -13,7 +14,8 @@ const Dashboard = (props) => {
 
   return (
     <div>
-      <div> Welcome back {userName}!</div>
+      <div> Welcome back, {userName}!</div>
+      <DashboardQuotes />
       <div>Here are your current budgets</div>
       <DashboardGraphs budgets={budgets} />
     </div>

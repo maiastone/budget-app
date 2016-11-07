@@ -1,11 +1,13 @@
 import React from 'react';
 import firebase from '../firebase';
 import { pullAllBy, map, extend } from 'lodash';
-import BudgetForm from './budgetForm';
-import LogIn from './signin';
-import Reports from './reports';
-import Dashboard from './Dashboard.jsx';
 import update from 'react-addons-update';
+import BudgetForm from './budgetForm.jsx';
+import LogIn from './signin.jsx';
+import AppLogo from './AppLogo.jsx';
+import Reports from './reports.jsx';
+import SignInPage from './SignInPage.jsx';
+import Dashboard from './Dashboard.jsx'
 
 
 class Application extends React.Component {
@@ -56,6 +58,7 @@ class Application extends React.Component {
 
   updateExpense(e, userBudget) {
     e.preventDefault();
+    console.log(userBudget)
     const actualExpense = e.target.parentElement.previousSibling.value;
     e.target.parentElement.previousSibling.value = '';
     userBudget.actualEntry.push({
@@ -66,6 +69,7 @@ class Application extends React.Component {
     firebase.database().ref(`users/${this.state.user.uid}/${userBudget.id}/userBudget/actualEntry`);
     budgetRef.update(userBudget.actualEntry);
   }
+
 
   deleteCard(e, id) {
     e.preventDefault();
@@ -81,6 +85,9 @@ class Application extends React.Component {
 
   render() {
     let child;
+    if (!this.state.user) {
+      child = <SignInPage />;
+    }
     if (this.state.route === 'dashboard') {
       child = <Dashboard
               user={this.state.user}
@@ -103,9 +110,10 @@ class Application extends React.Component {
 
     return (
       <div>
-
           <nav>
-            <div className="nav-bar">
+            <div className='nav-bar'>
+            <AppLogo />
+            <div>
             <button className="nav-button"
               onClick={() =>
               this.transitionRoute('dashboard')}>
@@ -121,6 +129,7 @@ class Application extends React.Component {
             <div>
               <LogIn user={this.state.user}
               />
+            </div>
             </div>
           </nav>
           {child}
