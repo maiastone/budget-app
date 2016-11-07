@@ -1,10 +1,11 @@
 import React from 'react';
 import firebase from '../firebase';
-import { pick, map, extend } from 'lodash';
+import { pullAllBy, map, extend } from 'lodash';
 import BudgetForm from './budgetForm';
 import LogIn from './signin';
 import Reports from './reports';
-import Dashboard from './Dashboard.jsx'
+import Dashboard from './Dashboard.jsx';
+import update from 'react-addons-update';
 
 
 class Application extends React.Component {
@@ -66,9 +67,10 @@ class Application extends React.Component {
     budgetRef.update(userBudget.actualEntry);
   }
 
-  deleteCard(e, userBudget) {
+  deleteCard(e, id) {
     e.preventDefault();
-    this.state.userBudget.child().remove();
+    const newBudgets = pullAllBy(this.state.budgets, [{ key: id }], 'id');
+    this.setState({ budgets: newBudgets });
   }
 
   transitionRoute(route) {

@@ -41,11 +41,11 @@ const BudgetCard = (props) => {
 
       <div className="button-container">
         <button className="delete-button"
-          onClick={(e) => deleteCard(e, userBudget)}
+          onClick={(e) => deleteCard(e, id)}
           >Delete Budget
         </button>
         <button className="submit-button"
-          onClick={(e) => updateExpense(e, userBudget)}
+          onClick={(e) => updateExpense(e)}
           >Submit Expense
         </button>
       </div>

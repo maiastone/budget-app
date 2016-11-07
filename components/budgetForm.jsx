@@ -6,7 +6,7 @@ import Application from './application';
 
 
 const BudgetForm = (props) => {
-  const { budgets, title, budget, dueDate, updateExpense, setUserBudget, pushBudget } = props;
+  const { budgets, title, budget, dueDate, updateExpense, setUserBudget, pushBudget, deleteCard } = props;
 
   return (
     <div>
@@ -30,7 +30,8 @@ const BudgetForm = (props) => {
         </form>
       </div>
       <BudgetList budgets={budgets}
-                  updateExpense={updateExpense} />
+                  updateExpense={updateExpense}
+                  deleteCard={deleteCard} />
     </div>
   );
 };
