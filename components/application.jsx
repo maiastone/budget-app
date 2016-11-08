@@ -29,6 +29,7 @@ class Application extends React.Component {
     firebase.auth().onAuthStateChanged((user) => {
       this.setState({ user });
       this.setDatabaseRef();
+      this.setState({ route: 'dashboard' });
     });
   }
 
@@ -85,9 +86,9 @@ class Application extends React.Component {
   render() {
     let child;
     if (!this.state.user) {
+      this.state.route = 'signInPage';
       child = <SignInPage />;
-    }
-    if (this.state.route === 'dashboard') {
+    } else if (this.state.route === 'dashboard') {
       child = <Dashboard
               user={this.state.user}
               budgets={this.state.budgets}
@@ -109,32 +110,33 @@ class Application extends React.Component {
 
     return (
       <div>
-          <nav>
-            <div className='nav-bar'>
-            <AppLogo />
-            <div>
-            <button id="dashboard-button"className="nav-button"
+        {child}
+          <nav className="header">
+            <div className="nav-bar">
+            <button
+              id="dashboard-button"
+              className="nav-button-logo"
               onClick={() =>
               this.transitionRoute('dashboard')}>
               Home</button>
-            <button id="budgetForm-button"className="nav-button"
+            <button
+              id="budgetForm-button"
+              className="nav-button"
               onClick={() => this.transitionRoute('budgetForm')}>
-              Enter Budget</button>
-            <button id="reports-button"className="nav-button"
+              Budgets</button>
+            <button
+              id="reports-button"
+              className="nav-button"
               onClick={() =>
               this.transitionRoute('reports')}>
-              View Reports</button>
-            </div>
-            <div>
-              <LogIn user={this.state.user}
-              />
-            </div>
+              Reports</button>
+            <LogIn user={this.state.user} />
             </div>
           </nav>
-          {child}
       </div>
     );
   }
 }
+
 
 module.exports = Application;

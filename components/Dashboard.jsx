@@ -2,6 +2,7 @@ import React from 'react';
 import DashboardGraphs from './DashboardGraphs.jsx'
 import DashboardQuotes from './DashboardQuotes.jsx'
 
+
 const Dashboard = (props) => {
   const { user, budgets } = props;
 
@@ -14,12 +15,13 @@ const Dashboard = (props) => {
 
   return (
     <div>
-      <div> Welcome back, {userName}!</div>
+      <h2 className="welcome">Welcome back, {userName}!</h2>
       <DashboardQuotes />
-      <div>Here are your current budgets</div>
+      <h2 className="welcome">Your Spendable Money</h2>
       <DashboardGraphs budgets={budgets} />
     </div>
   );
 };
+
 
 module.exports = Dashboard;
