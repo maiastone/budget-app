@@ -34,23 +34,41 @@ describe('Budgetform', () => {
     assert.equal(wrapper.find('#0').length, 4)
   });
 
+  it('should render a delete button for each budget item', () => {
+    const wrapper = mount(<BudgetForm budgets={budgets}/>);
+    assert.equal(wrapper.find('.delete-button').length, 4);
+  });
+
   it('should render four separate statuses when given budget props containing four actual expenses', () => {
     const wrapper = mount(<BudgetForm budgets={budgets} />);
     assert.equal(wrapper.find('.status').length, 4)
   });
-  // it.skip('should call setUserBudget when value is given to the budget input field', () => {
-  //   const mockOnChange = sinon.spy()
-  //   const wrapper = shallow(<BudgetForm onChange={setUserBudget} budgets={budgets} />);
-  //   wrapper.find('#budget-name').simulate('change', { target: { value: 'tools' } });
-  //
-  // })
 
-  it.only('can render a new budget when the submit budget button is clicked', () => {
-    const wrapper = mount(<BudgetForm onChange={setUserBudget} budgets={budgets} />);
-    wrapper.find('#budget-name').simulate('change', { target: { value: 'tools' } });
+  it('can handle onChange events and call setUserBudget on change within the budget-amount input', () => {
+    const onChange = sinon.spy();
+    const wrapper = mount(<BudgetForm setUserBudget={onChange} budgets={budgets} />);
     wrapper.find('#budget-amount').simulate('change', { target: { value: 100 } });
-    wrapper.find('.submit-button').simulate('click');
-    assert.equal(wrapper.find('.budget-card').length, 5);
-    //need to use spy or stub here! 
+    expect(onChange).to.have.property('callCount', 1);
+  });
+
+  it('can handle onChange events and call setUserBudget on change within the budget-title input', () => {
+    const onChange = sinon.spy();
+    const wrapper = mount(<BudgetForm setUserBudget={onChange} budgets={budgets} />);
+    wrapper.find('#budget-title').simulate('change', { target: { value: 'Yay!' } });
+    expect(onChange).to.have.property('callCount', 1);
+  });
+
+  it('can call pushBudget with an onClick event on its submit button', () => {
+    const onClick = sinon.spy();
+    const wrapper = mount(<BudgetForm pushBudget={onClick} budgets={budgets} />);
+    wrapper.find('.submit-button').first().simulate('click');
+    expect(onClick).to.have.property('callCount', 1);
+  });
+
+  it('can call deleted budget with an onClick event on the delete button', () => {
+    const onClick = sinon.spy();
+    const wrapper = mount(<BudgetForm deleteCard={onClick} budgets={budgets} />);
+    wrapper.find('.delete-button').first().simulate('click');
+    expect(onClick).to.have.property('callCount', 1);
   });
 });

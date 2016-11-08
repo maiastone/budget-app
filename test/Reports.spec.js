@@ -14,9 +14,14 @@ describe('Reports', () => {
     assert.equal(wrapper.type(), 'div');
   });
 
-  it.skip('should have a default budgets state of []', () => {
+  it('should have a default allowance state of an empty string', () => {
     const wrapper = mount(<Reports budgets={budgets} />);
-    expect(wrapper.state().messages).to.be.empty;
+    expect(wrapper.state().allowance).to.be.empty;
+  });
+
+  it('should have a budget object as props', () => {
+    const wrapper = mount(<Reports budgets={budgets}/>);
+    assert.isObject(wrapper.props('budget'));
   });
 
   it('should render three report list elements', () => {

@@ -11,11 +11,13 @@ const BudgetForm = (props) => {
   return (
     <div>
       <div className="card">
-        <form id="budget-name"className="budget-form">
+        <form
+          className="budget-form">
           <h2 className="card-title">Enter Budgets</h2>
           <input
             aria-label="budget-title"
             className="budget-input"
+            id="budget-title"
             placeholder="enter budget item"
             value= {title}
             onChange={(e) => setUserBudget(e, 'title')}>
@@ -32,6 +34,7 @@ const BudgetForm = (props) => {
           </input>
 
           <button
+
             className="submit-button"
             onClick={(e) => pushBudget(e)}>Submit Budget
           </button>

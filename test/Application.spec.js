@@ -51,20 +51,13 @@ describe('Application', () => {
     wrapper.find('#reports-button').simulate('click');
     assert.equal(wrapper.state().route, 'reports');
   });
+
   it('should change the state of route to reports if the reports button is clicked', () => {
     const wrapper = mount(<Application user={user}/>);
     wrapper.setState({ user });
     wrapper.find('#budgetForm-button').simulate('click');
     assert.equal(wrapper.state().route, 'budgetForm');
   });
-
-  // it('should change the state of route to
-  // dashboard when the home button is clicked', () => {
-  //   const wrapper = mount(<Application user={user}/>);
-  //  wrapper.setState({user})
-  //  wrapper.find('#dashboard-button').simulate('click');
-  //  assert.equal(wrapper.state().route, 'dashboard');
-  // })
 
   it('should change the state of route to reports if the reports button is clicked', () => {
     const wrapper = mount(<Application user={user}/>);

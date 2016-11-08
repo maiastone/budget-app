@@ -8,6 +8,7 @@ import Dashboard from '../components/Dashboard.jsx';
 import DashboardGraphs from '../components/DashboardGraphs.jsx';
 import DashboardGraphCard from '../components/DashboardGraphCard.jsx'
 import budgets from '../test/helpers/Budgets.js';
+import user from '../test/helpers/User.js'
 
 describe('Dashboard', () => {
   it('renders as a <div>', () => {
@@ -20,8 +21,18 @@ describe('Dashboard', () => {
     assert.isObject(wrapper.props('budget'));
   });
 
+  it('should have a user object as props', () => {
+    const wrapper = mount(<Dashboard budgets={budgets} user={user}/>);
+    assert.isObject(wrapper.props('user'));
+  });
+
   it('should render four graphs based on budget props', () => {
     const wrapper = mount(<Dashboard budgets={budgets} />);
     assert.equal(wrapper.find('.dashboardGraphs').length, 4);
+  });
+
+  it('should render a random quote', () => {
+    const wrapper = mount(<Dashboard budgets={budgets} />);
+    assert.equal(wrapper.find('.random-quote').length, 1);
   });
 });
