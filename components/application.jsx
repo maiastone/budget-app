@@ -58,7 +58,6 @@ class Application extends React.Component {
 
   updateExpense(e, userBudget) {
     e.preventDefault();
-    console.log(userBudget)
     const actualExpense = e.target.parentElement.previousSibling.value;
     e.target.parentElement.previousSibling.value = '';
     userBudget.actualEntry.push({
@@ -110,12 +109,13 @@ class Application extends React.Component {
 
     return (
       <div>
+        {child}
           <nav className="header">
             <div className="nav-bar">
             <button className="nav-button-logo"
               onClick={() =>
               this.transitionRoute('dashboard')}>
-            </button>
+              Home</button>
             <button className="nav-button"
               onClick={() => this.transitionRoute('budgetForm')}>
               Enter Budget</button>
@@ -123,13 +123,13 @@ class Application extends React.Component {
               onClick={() =>
               this.transitionRoute('reports')}>
               View Reports</button>
-            </div>
             <LogIn user={this.state.user} />
+            </div>
           </nav>
-          {child}
       </div>
     );
   }
 }
+
 
 module.exports = Application;

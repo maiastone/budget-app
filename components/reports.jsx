@@ -91,7 +91,7 @@ class Reports extends React.Component {
         <div className = "report-container">
 
           <h2 className="report-title">Monthly Budgets</h2>
-          <div className="report-header">
+          <div className="large-report-header">
             <h2 className="small-label">
               Total
             </h2>
@@ -112,6 +112,7 @@ class Reports extends React.Component {
             </h2>
           </div>
 
+          <ul className="total-labels"><li>Total Budget</li><li>Total Spent</li></ul>
           <div className="report-list">
             <ul>{allTitlesList}</ul>
             <ul>{allBudgetsList}</ul><ul>{allActualsList}</ul>
@@ -120,8 +121,8 @@ class Reports extends React.Component {
 
         <div className ="report-container">
 
-          <div className="report-header">
-            <h2 className="allowance-label">Allowance: </h2>
+          <div className="large-report-header">
+            <p className="allowance-label">Allowance ~ <br/> weekly or desired</p>
             <input aria-label="enter-allowance"
                     className="allowance-input"
                     type="number"
@@ -130,22 +131,22 @@ class Reports extends React.Component {
             </input>
           </div>
 
-          <div className="report-header">
-            <h2>Weekly Budget:</h2>
+          <div className="large-report-header">
+            <h2>Weekly Budget</h2>
             <h2 className="card-total">Total ${weeklyTotal}</h2>
           </div>
-          <div className="report-list">
+          <div className="small-report-list">
             <ul>{allTitlesList}</ul><ul>{weeklyBudgetList}</ul>
           </div>
           <h4>Savings: ${balance}</h4>
         </div>
 
         <div className = "report-container">
-          <div className="report-header">
-            <h2>Annual Budgets:</h2>
+          <div className="large-report-header">
+            <h2>Annual Budgets</h2>
             <h2 className="card-total">Total ${annualTotal}</h2>
           </div>
-          <div className="report-list">
+          <div className="small-report-list">
             <ul>{allTitlesList}</ul><ul>{annualBudgetList}</ul>
           </div>
         </div>
@@ -154,5 +155,6 @@ class Reports extends React.Component {
       );
   }
   }
+
 
 module.exports = Reports;
