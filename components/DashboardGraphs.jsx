@@ -6,6 +6,7 @@ class DashboardGraphs extends React.Component {
 
   render() {
     const budgets = this.props.budgets;
+    debugger;
     const budgetGraphs = budgets.map(m => {
       if (!m.userBudget.actualEntry) {
         m.userBudget.actualEntry = [];

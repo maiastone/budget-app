@@ -17,7 +17,7 @@ class Application extends React.Component {
       user: null,
       budgets: [],
       userBudget: {
-        title: '',
+          title: '',
         budget: '',
         actualEntry: [],
       },
