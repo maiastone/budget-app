@@ -6,7 +6,6 @@ class Reports extends React.Component {
     super();
     this.state = {
       allowance: '',
-      // negativeNumber: false,
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -14,9 +13,7 @@ class Reports extends React.Component {
   handleChange(e) {
     this.setState({ allowance: e.target.value });
   }
-  // if (totalIntegers.val < 0) {
-  //   this.setState({ negativeNumber: true });
-  // }
+
 
   render() {
     const budgets = this.props.budgets;
@@ -63,7 +60,6 @@ class Reports extends React.Component {
 
     const totalActuals = totalActualsArray.reduce((sum, num) => sum + num, 0);
 
-
     const weeklyBudgetsArray = [];
     for (let i = 0; i < allBudgetsArray.length; i++) {
       const weeklyBudget = +allBudgetsArray[i] / 4;
@@ -83,7 +79,7 @@ class Reports extends React.Component {
       const annualBudget = +allBudgetsArray[i] * 12;
       annualBudgetsArray.push(annualBudget);
     }
-    const annualBudgetList = annualBudgetsArray.map((expense, index) => {// eslint-disable-line
+    const annualBudgetList = annualBudgetsArray.map((expense, index) => { // eslint-disable-line
       return <li key={index}>{expense}</li>;
     });
 
@@ -94,13 +90,29 @@ class Reports extends React.Component {
 
         <div className = "report-container">
 
-          <div className="report-header">
-            <h2>Monthly Budgets:</h2>
-            <h2 className="card-total">Total ${allBudgetsTotal}</h2>
-            <h2 className="card-total">Spent ${totalActuals}</h2>
-            <h2 className="card-total">Remaining ${allBudgetsTotal - totalActuals}</h2>
+          <h2 className="report-title">Monthly Budgets</h2>
+          <div className="large-report-header">
+            <h2 className="small-label">
+              Total
+            </h2>
+            <h2 className="card-total">
+              ${allBudgetsTotal}
+            </h2>
+            <h2 className="small-label">
+              Spent
+            </h2>
+            <h2 className="card-total">
+              ${totalActuals}
+            </h2>
+            <h2 className="small-label">
+              Remaining
+            </h2>
+            <h2 className="card-total">
+              ${allBudgetsTotal - totalActuals}
+            </h2>
           </div>
 
+          <ul className="total-labels"><li>Total Budget</li><li>Total Spent</li></ul>
           <div className="report-list">
             <ul>{allTitlesList}</ul>
             <ul>{allBudgetsList}</ul><ul>{allActualsList}</ul>
@@ -109,8 +121,8 @@ class Reports extends React.Component {
 
         <div className ="report-container">
 
-          <div className="report-header">
-            <h2>Allowance: </h2>
+          <div className="large-report-header">
+            <p className="allowance-label">Allowance ~ <br/> weekly or desired</p>
             <input aria-label="enter-allowance"
                     className="allowance-input"
                     type="number"
@@ -119,22 +131,22 @@ class Reports extends React.Component {
             </input>
           </div>
 
-          <div className="report-header">
-            <h2>Weekly Budget:</h2>
+          <div className="large-report-header">
+            <h2>Weekly Budget</h2>
             <h2 className="card-total">Total ${weeklyTotal}</h2>
           </div>
-          <div className="report-list">
+          <div className="small-report-list">
             <ul>{allTitlesList}</ul><ul>{weeklyBudgetList}</ul>
           </div>
           <h4>Savings: ${balance}</h4>
         </div>
 
         <div className = "report-container">
-          <div className="report-header">
-            <h2>Annual Budgets:</h2>
+          <div className="large-report-header">
+            <h2>Annual Budgets</h2>
             <h2 className="card-total">Total ${annualTotal}</h2>
           </div>
-          <div className="report-list">
+          <div className="small-report-list">
             <ul>{allTitlesList}</ul><ul>{annualBudgetList}</ul>
           </div>
         </div>
@@ -143,5 +155,6 @@ class Reports extends React.Component {
       );
   }
   }
+
 
 module.exports = Reports;

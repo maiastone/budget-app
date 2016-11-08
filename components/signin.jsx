@@ -7,10 +7,9 @@ const LogIn = (props) => {
 
   return (
     <div className="signInButton"> {user ?
-      <p><button className="sign-button"
+      <button className="sign-button"
               onClick={() => signOut()}>
               Sign Out</button>
-      Signed in as {user && user.email}</p>
       : <button className="sign-button"
                 onClick={() => signIn()}>
                 Sign In</button>}

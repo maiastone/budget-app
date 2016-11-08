@@ -26,9 +26,8 @@ const BudgetCard = (props) => {
       </div>
 
       <div className="expense-display">
-        <h3>Actual Expenses </h3>
-        <ul>{expenseArray}</ul>
         <p>Total Expenses: ${total}</p>
+        <ul>{expenseArray}</ul>
       </div>
 
       <input
@@ -47,16 +46,15 @@ const BudgetCard = (props) => {
         />
 
       <div className="button-container">
-
         <button
           className="delete-button"
           onClick={(e) => deleteCard(e, id)}
-          >Delete Budget
+          >Delete
         </button>
         <button
           className="submit-button"
           onClick={(e) => updateExpense(e, userBudget)}
-          >Submit Expense
+          >Submit
         </button>
       </div>
     </div>
