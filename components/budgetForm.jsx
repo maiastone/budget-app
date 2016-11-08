@@ -32,7 +32,7 @@ const BudgetForm = (props) => {
 
           <button
             className="submit-button"
-            onClick={(e) => pushBudget(e)}>Submit Budget
+            onClick={(e) => pushBudget(e)}>Submit
           </button>
 
         </form>

@@ -118,11 +118,11 @@ class Application extends React.Component {
               Home</button>
             <button className="nav-button"
               onClick={() => this.transitionRoute('budgetForm')}>
-              Enter Budget</button>
+              Budgets</button>
             <button className="nav-button"
               onClick={() =>
               this.transitionRoute('reports')}>
-              View Reports</button>
+              Reports</button>
             <LogIn user={this.state.user} />
             </div>
           </nav>
