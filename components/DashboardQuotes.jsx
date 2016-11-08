@@ -15,7 +15,7 @@ const DashboardQuotes = () => {
   const dashboardQuote = dashboardQuotes[randomNumber];
 
   return (
-    <div>
+    <div className="quotes">
       {dashboardQuote}
     </div>
   );

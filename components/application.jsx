@@ -110,14 +110,12 @@ class Application extends React.Component {
 
     return (
       <div>
-          <nav>
-            <div className='nav-bar'>
-            <AppLogo />
-            <div>
-            <button className="nav-button"
+          <nav className="header">
+            <div className="nav-bar">
+            <button className="nav-button-logo"
               onClick={() =>
               this.transitionRoute('dashboard')}>
-              Home</button>
+            </button>
             <button className="nav-button"
               onClick={() => this.transitionRoute('budgetForm')}>
               Enter Budget</button>
@@ -126,11 +124,7 @@ class Application extends React.Component {
               this.transitionRoute('reports')}>
               View Reports</button>
             </div>
-            <div>
-              <LogIn user={this.state.user}
-              />
-            </div>
-            </div>
+            <LogIn user={this.state.user} />
           </nav>
           {child}
       </div>

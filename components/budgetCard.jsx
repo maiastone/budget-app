@@ -26,9 +26,8 @@ const BudgetCard = (props) => {
       </div>
 
       <div className="expense-display">
-        <h3>Actual Expenses </h3>
-        <ul>{expenseArray}</ul>
         <p>Total Expenses: ${total}</p>
+        <ul>{expenseArray}</ul>
       </div>
 
       <input
