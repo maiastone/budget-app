@@ -113,14 +113,20 @@ class Application extends React.Component {
         {child}
           <nav className="header">
             <div className="nav-bar">
-            <button className="nav-button-logo"
+            <button
+              id="dashboard-button"
+              className="nav-button-logo"
               onClick={() =>
               this.transitionRoute('dashboard')}>
               Home</button>
-            <button className="nav-button"
+            <button
+              id="budgetForm-button"
+              className="nav-button"
               onClick={() => this.transitionRoute('budgetForm')}>
               Budgets</button>
-            <button className="nav-button"
+            <button
+              id="reports-button"
+              className="nav-button"
               onClick={() =>
               this.transitionRoute('reports')}>
               Reports</button>
