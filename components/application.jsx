@@ -29,6 +29,7 @@ class Application extends React.Component {
     firebase.auth().onAuthStateChanged((user) => {
       this.setState({ user });
       this.setDatabaseRef();
+      this.setState({ route: 'dashboard' });
     });
   }
 
@@ -85,9 +86,9 @@ class Application extends React.Component {
   render() {
     let child;
     if (!this.state.user) {
+      this.state.route = 'signInPage';
       child = <SignInPage />;
-    }
-    if (this.state.route === 'dashboard') {
+    } else if (this.state.route === 'dashboard') {
       child = <Dashboard
               user={this.state.user}
               budgets={this.state.budgets}

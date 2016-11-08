@@ -22,7 +22,7 @@ const DashboardGraphs = (props) => {
              height="40" />
            </g>
          </svg>
-         <p>$ {budget - sumExpenses} available today </p>
+         <p>$ {((budget - sumExpenses) / 4).toFixed(2)} available for the week </p>
     </div>
   );
 };

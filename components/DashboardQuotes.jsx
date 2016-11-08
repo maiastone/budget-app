@@ -1,7 +1,7 @@
 import React from 'react';
 
 const DashboardQuotes = () => {
-  const randomNumber = (Math.floor(Math.random() * 10) + 1);
+  const randomNumber = (Math.floor(Math.random() * 10 - 1) + 1);
 
   const dashboardQuotes = ["It’s how you deal with  failure that determines how you achieve success. –David Feherty",
    "Frugality includes all the other virtues. –Cicero",

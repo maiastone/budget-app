@@ -316,6 +316,23 @@ h4 {
   margin-bottom: 70px;
 }
 
+.sign-in-page {
+  padding: 80px 50px 20px;;
+  font-size: 35px;
+  text-align: center;
+}
+
+.instructions {
+  font-size: 22px;
+  text-align: center;
+}
+
+img {
+  width: 250px;
+  height: 250px;
+  margin-left: 20%;
+}
+
 @media screen and(min-width: 600px) {
   h2 {
     font-size: $large-font-size;
@@ -404,6 +421,11 @@ h4 {
   .total-labels {
     width: 100%;
     margin-left: 0;
-
+  }
+  img {
+    margin-left: 30%;
+  }
+  .sign-in-page {
+    font-size: 42px;
   }
 }
