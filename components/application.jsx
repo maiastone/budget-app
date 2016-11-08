@@ -17,7 +17,7 @@ class Application extends React.Component {
       user: null,
       budgets: [],
       userBudget: {
-          title: '',
+        title: '',
         budget: '',
         actualEntry: [],
       },
@@ -58,7 +58,6 @@ class Application extends React.Component {
 
   updateExpense(e, userBudget) {
     e.preventDefault();
-    console.log(userBudget)
     const actualExpense = e.target.parentElement.previousSibling.value;
     e.target.parentElement.previousSibling.value = '';
     userBudget.actualEntry.push({
@@ -114,14 +113,14 @@ class Application extends React.Component {
             <div className='nav-bar'>
             <AppLogo />
             <div>
-            <button className="nav-button"
+            <button id="dashboard-button"className="nav-button"
               onClick={() =>
               this.transitionRoute('dashboard')}>
               Home</button>
-            <button className="nav-button"
+            <button id="budgetForm-button"className="nav-button"
               onClick={() => this.transitionRoute('budgetForm')}>
               Enter Budget</button>
-            <button className="nav-button"
+            <button id="reports-button"className="nav-button"
               onClick={() =>
               this.transitionRoute('reports')}>
               View Reports</button>

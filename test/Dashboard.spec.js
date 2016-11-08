@@ -23,5 +23,5 @@ describe('Dashboard', () => {
   it('should render four graphs based on budget props', () => {
     const wrapper = mount(<Dashboard budgets={budgets} />);
     assert.equal(wrapper.find('.dashboardGraphs').length, 4);
-  })
+  });
 });

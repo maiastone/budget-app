@@ -11,7 +11,7 @@ const BudgetForm = (props) => {
   return (
     <div>
       <div className="card">
-        <form className="budget-form">
+        <form id="budget-name"className="budget-form">
           <h2 className="card-title">Enter Budgets</h2>
           <input
             aria-label="budget-title"
@@ -24,6 +24,7 @@ const BudgetForm = (props) => {
           <input
             aria-label="budget-input"
             className="budget-input"
+            id="budget-amount"
             type="number"
             placeholder="$ enter budget amount"
             value = {budget}

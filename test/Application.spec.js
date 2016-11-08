@@ -6,7 +6,6 @@
   //
 //Mount is go-to for functionality
   //good for checking if state is being set
-  //need setTimeout for testing state on Mount?
 //helpers - you can make fake data
 
 
@@ -15,6 +14,8 @@ import { shallow, mount, render } from 'enzyme';
 import { assert, expect } from 'chai';
 let sinon = require('sinon');
 const locus = require('locus');
+import user from '../test/helpers/User.js'
+import budgets from '../test/helpers/Budgets.js';
 
 import Application from '../components/application.jsx';
 
@@ -32,11 +33,43 @@ describe('Application', () => {
   it('shoulder render three nav buttons', () => {
     const wrapper = mount(<Application />);
     assert.equal(wrapper.find('.nav-button').length, 3);
-  })
+  });
 
   it('should have a default route of dashboard', () => {
     const wrapper = mount(<Application />);
     assert.equal(wrapper.state().route, 'dashboard');
   });
-  it.skip('should set state on componentDidMount')
+
+  it('should call componentWillMount when mounting correctly, fam', () => {
+    sinon.spy(Application.prototype, 'componentWillMount');
+    const wrapper = mount(<Application user={user} />);
+    expect(Application.prototype.componentWillMount.calledOnce).to.equal(true);
+  });
+
+  it('should change the state of route to reports if the reports button is clicked', () => {
+    const wrapper = mount(<Application />);
+    wrapper.find('#reports-button').simulate('click');
+    assert.equal(wrapper.state().route, 'reports');
+  });
+  it('should change the state of route to reports if the reports button is clicked', () => {
+    const wrapper = mount(<Application user={user}/>);
+    wrapper.setState({ user });
+    wrapper.find('#budgetForm-button').simulate('click');
+    assert.equal(wrapper.state().route, 'budgetForm');
+  });
+
+  // it('should change the state of route to
+  // dashboard when the home button is clicked', () => {
+  //   const wrapper = mount(<Application user={user}/>);
+  //  wrapper.setState({user})
+  //  wrapper.find('#dashboard-button').simulate('click');
+  //  assert.equal(wrapper.state().route, 'dashboard');
+  // })
+
+  it('should change the state of route to reports if the reports button is clicked', () => {
+    const wrapper = mount(<Application user={user}/>);
+    wrapper.setState({ user });
+    wrapper.find('#budgetForm-button').simulate('click');
+    assert.equal(wrapper.state().route, 'budgetForm');
+  });
 });
