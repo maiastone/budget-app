@@ -15,7 +15,7 @@ const Dashboard = (props) => {
 
   return (
     <div>
-      <h2 className="welcome">Welcome back, {userName}!</h2>
+      <h2 className="welcome">Welcome back, {userName.split(' ')[0]}!</h2>
       <DashboardQuotes />
       <h2 className="welcome">Your Spendable Money</h2>
       <DashboardGraphs budgets={budgets} />

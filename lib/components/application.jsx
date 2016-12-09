@@ -4,7 +4,6 @@ import { pullAllBy, map, extend } from 'lodash';
 import update from 'react-addons-update';
 import BudgetForm from './budgetForm.jsx';
 import LogIn from './signin.jsx';
-import AppLogo from './AppLogo.jsx';
 import Reports from './reports.jsx';
 import SignInPage from './SignInPage.jsx';
 import Dashboard from './Dashboard.jsx'
@@ -25,7 +24,7 @@ class Application extends React.Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     firebase.auth().onAuthStateChanged((user) => {
       this.setState({ user });
       this.setDatabaseRef();
