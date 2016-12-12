@@ -6,7 +6,7 @@ $button-width-height: 50px;
 $large-input-width: 200px;
 $submit-button-color: #2980b9;
 $delete-button-color: #e74c3c;
-$background-color: lighten(#1abc9c, 10%);
+$background-color: #ffffff;
 $footer-color: lighten(#16a085, 35%);
 $card-background-color: lighten(#f1c40f, 40%);
 $standard-border-radius: 5px;
@@ -297,7 +297,7 @@ blockquote {
   background: $card-background-color;
   border-left: 10px solid black;
   margin: 1.5em 10px;
-  padding: 0.5em 10px;
+  padding: 1.5em 30px;
   quotes: "\201C""\201D""\2018""\2019";
 }
 blockquote:before {
