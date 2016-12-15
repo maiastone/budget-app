@@ -34,7 +34,6 @@ const BudgetForm = (props) => {
           </input>
 
           <button
-
             className="submit-button"
             onClick={(e) => pushBudget(e)}>Submit
           </button>

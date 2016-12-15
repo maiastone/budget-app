@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import { Component } from 'react';
+import React from 'react';
 import BudgetCard from './budgetCard';
 import Application from './application';
 
@@ -34,10 +35,6 @@ class BudgetList extends Component {
     );
   }
 }
-
-BudgetList.propTypes = {
-  budget: PropTypes.number,
-};
 
 
 module.exports = BudgetList;

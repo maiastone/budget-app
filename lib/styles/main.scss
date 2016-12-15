@@ -6,7 +6,7 @@ $button-width-height: 50px;
 $large-input-width: 200px;
 $submit-button-color: #2980b9;
 $delete-button-color: #e74c3c;
-$background-color: lighten(#1abc9c, 10%);
+$background-color: #ffffff;
 $footer-color: lighten(#16a085, 35%);
 $card-background-color: lighten(#f1c40f, 40%);
 $standard-border-radius: 5px;
@@ -22,7 +22,7 @@ $medium-padding-margin: 10px;
   font-weight: bold;
   width: 100px;
   &:hover {
-    font-size: 1.75em;
+    font-size: 1.2em;
   }
 }
 
@@ -293,16 +293,28 @@ h4 {
   font-size: 12px;
 }
 
-.quotes {
-  background-color: $card-background-color;
-  margin: 35px;
-  padding: 20px;
-  border-radius: $standard-border-radius;
+blockquote {
+  background: $card-background-color;
+  border-left: 10px solid black;
+  margin: 1.5em 10px;
+  padding: 1.5em 30px;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+blockquote:before {
+  color: black;
+  content: open-quote;
+  font-size: 3em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+blockquote p {
+  display: inline;
 }
 
 .welcome {
   text-align: center;
-  font-size: 18px;
+  font-size: 24px;
   padding-top: 30px;
 }
 
