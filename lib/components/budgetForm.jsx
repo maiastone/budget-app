@@ -1,8 +1,8 @@
 import React from 'react';
 const firebase = require('../firebase');
 import { map, extend } from 'lodash';
-import BudgetList from './budgetList';
-import Application from './application';
+import BudgetList from './budgetList.jsx';
+import Application from './application.jsx';
 
 
 const BudgetForm = (props) => {

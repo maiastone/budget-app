@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import React from 'react';
-import BudgetCard from './budgetCard';
-import Application from './application';
+import BudgetCard from './budgetCard.jsx';
+import Application from './application.jsx';
 
 class BudgetList extends Component {
 
