@@ -22,7 +22,7 @@ class DashboardGraphs extends React.Component {
     });
 
     return (
-      <div>
+      <div className='dashboard-graph-container'>
         {budgetGraphs}
       </div>
     );
