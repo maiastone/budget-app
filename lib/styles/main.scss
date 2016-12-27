@@ -37,6 +37,7 @@ $medium-padding-margin: 10px;
 * {
   box-sizing: border-box;
 }
+
 body {
   background-color: $background-color;
   font-family: 'Poppins', sans-serif;
@@ -95,15 +96,6 @@ h4 {
 .expense-input {
   @extend .budget-input;
   margin: $medium-padding-margin auto;
-}
-
-.radio-buttons {
-  @include flexbox;
-  flex-direction: row;
-  align-items: center;
-  position: relative;
-  height: $button-width-height;
-  margin-left: $button-width-height;
 }
 
 .card {
@@ -281,6 +273,10 @@ h4 {
   margin-top: 5%;
 }
 
+.graphs-container {
+  margin-bottom: 15%;
+}
+
 .signInButton {
   display: inline-block;
   p {
@@ -325,7 +321,11 @@ blockquote p {
 }
 
 .budget-form-container {
-  margin-bottom: 70px;
+  margin-bottom: 20%;
+}
+
+.all-reports-container {
+  margin-bottom: 20%;
 }
 
 .sign-in-page {

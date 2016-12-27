@@ -18,7 +18,7 @@ const Dashboard = (props) => {
       <h2 className="welcome">Welcome back, {userName.split(' ')[0]}!</h2>
       <DashboardQuotes />
       <h2 className="welcome">Your Spendable Money</h2>
-      <DashboardGraphs budgets={budgets} />
+      <DashboardGraphs className='graphs-container' budgets={budgets} />
     </div>
   );
 };
